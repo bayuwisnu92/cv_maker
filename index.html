@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Modern dan Sederhana</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    h1, h2 {
+      color: #343a40;
+    }
+
+    hr {
+      border-top: 1px solid #6c757d;
+    }
+
+    .hr2 {
+      border-top: 4px solid rgb(12, 121, 245);
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    .h5 {
+      width: 100%;
+      height: 30px;
+      background-color: #6c757d;
+      color: white;
+      padding: 2px 3px;
+      text-align: center;
+    }
+
+    .left-column {
+      background-color: #e3f2fd;
+      min-height: 100vh;
+      padding-top: 30px;
+    }
+
+    .right-column {
+      background-color: #fff;
+      padding: 30px;
+    }
+
+    .rounded-circle {
+      width: 150px;
+      height: 150px;
+    }
+
+    .social-media img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .preview-container {
+      display: none;
+      background-color: white;
+      padding: 30px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center mt-3 mb-3">Curriculum Vitae</h1>
+  </div>
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-md-4 left-column">
+        <div class="p-4">
+          <div class="d-flex flex-column align-items-center p-4">
+            <input type="file" id="profilePicInput" onchange="previewImage(event)" class="mb-3">
+            <img id="profilePic" src="" class="rounded-circle img-fluid" alt="Profile Picture">
+          </div>
+
+          <h1 class="mt-3 text-center">
+            <input type="text" id="nameInput" placeholder="Nama Anda" class="form-control">
+          </h1>
+          <p>
+            <strong>Alamat:</strong>
+            <input type="text" id="addressInput" placeholder="Jalan Contoh No. 123, Kota, Negara" class="form-control"><br>
+            <strong>Email:</strong>
+            <input type="email" id="emailInput" placeholder="email@example.com" class="form-control"><br>
+            <strong>Telepon:</strong>
+            <input type="tel" id="phoneInput" placeholder="08123456789" class="form-control">
+          </p>
+
+          <h5 class="h5">Sosial Media</h5>
+          <div class="social-media">
+            <div class="row mb-2">
+              <div class="col-2"><img src="facebook.png" alt="Facebook" class="img-fluid"></div>
+              <div class="col-8"><input type="text" id="facebookInput" placeholder="Facebook" class="form-control"></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-2"><img src="twitter.png" alt="Twitter" class="img-fluid"></div>
+              <div class="col-8"><input type="text" id="twitterInput" placeholder="Twitter" class="form-control"></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-2"><img src="instagram.png" alt="Instagram" class="img-fluid"></div>
+              <div class="col-8"><input type="text" id="instagramInput" placeholder="Instagram" class="form-control"></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-2"><img src="github.png" alt="GitHub" class="img-fluid"></div>
+              <div class="col-8"><input type="text" id="githubInput" placeholder="GitHub" class="form-control"></div>
+            </div>
+          </div>
+
+          <h5 class="h5 text-center">Personal Skill</h5>
+          <ul id="personalSkillList">
+            <li><input type="text" placeholder="Nama Sekolah: Gelar dan Tahun" class="form-control"></li>
+          </ul>
+          <button onclick="addPersonalSkill()" class="btn btn-primary">Tambah Skill</button>
+        </div>
+      </div>
+      <div class="col-md-8 right-column">
+        <div class="p-4">
+          <h5 class="h5">Pendidikan</h5>
+          <ul id="educationList">
+            <li><input type="text" placeholder="Nama Sekolah: Gelar dan Tahun" class="form-control"></li>
+          </ul>
+          <button onclick="addEducation()" class="btn btn-primary">Tambah Pendidikan</button>
+          <hr>
+          <h5 class="h5">Pengalaman Kerja</h5>
+          <ul id="experienceList">
+            <li><input type="text" placeholder="Nama Perusahaan: Jabatan dan Tahun" class="form-control"></li>
+          </ul>
+          <button onclick="addExperience()" class="btn btn-primary">Tambah Pengalaman</button>
+          <hr>
+          <h5 class="h5">Pengalaman Organisasi</h5>
+          <ul id="organizationList">
+            <li><input type="text" placeholder="Keterampilan 1" class="form-control"></li>
+          </ul>
+          <button onclick="addSkill()" class="btn btn-primary">Tambah Keterampilan</button>
+          <hr>
+          <h5 class="h5">Hobi</h5>
+          <ul id="hobiList">
+            <li><input type="text" placeholder="Hobi" class="form-control"></li>
+          </ul>
+          <button onclick="addHobi()" class="btn btn-primary">Tambah Hobi</button>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container text-center mb-5">
+    <button onclick="submitCV()" class="btn btn-primary mt-3">Submit dan Preview</button>
+  </div>
+
+  <div id="previewContainer" class="container preview-container">
+    <h1 class="text-center mt-3 mb-3">Curriculum Vitae</h1>
+    
+    <div class="row no-gutters">
+      <div class="col-md-4 left-column">
+        <div class="p-4">
+          <div class="d-flex flex-column align-items-center p-4">
+            <img id="profilePicPreview" src="" class="rounded-circle img-fluid" alt="Profile Picture">
+          </div>
+
+          <h1 class="mt-3 text-center" id="namePreview"></h1>
+          <p>
+            <strong>Alamat:</strong>
+            <span id="addressPreview"></span><br>
+            <strong>Email:</strong>
+            <span id="emailPreview"></span><br>
+            <strong>Telepon:</strong>
+            <span id="phonePreview"></span>
+          </p>
+
+          <h5 class="h5">Sosial Media</h5>
+          <div class="social-media">
+            <div class="row mb-2">
+              <div class="col-2"><img src="facebook.png" alt="Facebook" class="img-fluid"></div>
+              <div class="col-8"><span id="facebookPreview"></span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-2"><img src="twitter.png" alt="Twitter" class="img-fluid"></div>
+              <div class="col-8"><span id="twitterPreview"></span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-2"><img src="instagram.png" alt="Instagram" class="img-fluid"></div>
+              <div class="col-8"><span id="instagramPreview"></span></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-2"><img src="github.png" alt="GitHub" class="img-fluid"></div>
+              <div class="col-8"><span id="githubPreview"></span></div>
+            </div>
+          </div>
+
+          <h5 class="h5 text-center">Personal Skill</h5>
+          <ul id="personalSkillPreviewList"></ul>
+        </div>
+      </div>
+      <div class="col-md-8 right-column">
+        <div class="p-4">
+          <h5 class="h5">Pendidikan</h5>
+          <ul id="educationPreviewList"></ul>
+          <hr>
+          <h5 class="h5">Pengalaman Kerja</h5>
+          <ul id="experiencePreviewList"></ul>
+          <hr>
+          <h5 class="h5">Pengalaman Organisasi</h5>
+          <ul id="organizationPreviewList"></ul>
+          <hr>
+          <h5 class="h5">Hobi</h5>
+          <ul id="hobiPreviewList"></ul>
+          <hr>
+          <div class="container text-center mb-5" id="previewButtons">
+            <button onclick="saveAsPDF()" class="btn btn-success mt-3">Simpan sebagai PDF</button>
+            <button onclick="printCV()" class="btn btn-success mt-3">Cetak</button>
+            <button onclick="saveAsImage()" class="btn btn-success mt-3">Simpan sebagai Gambar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+  <script>
+    function previewImage(event) {
+      var reader = new FileReader();
+      reader.onload = function() {
+        var output = document.getElementById('profilePic');
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    function addPersonalSkill() {
+      var ul = document.getElementById("personalSkillList");
+      var li = document.createElement("li");
+      li.innerHTML = '<input type="text" placeholder="Nama Sekolah: Gelar dan Tahun" class="form-control">';
+      ul.appendChild(li);
+    }
+
+    function addEducation() {
+      var ul = document.getElementById("educationList");
+      var li = document.createElement("li");
+      li.innerHTML = '<input type="text" placeholder="Nama Sekolah: Gelar dan Tahun" class="form-control">';
+      ul.appendChild(li);
+    }
+
+    function addExperience() {
+      var ul = document.getElementById("experienceList");
+      var li = document.createElement("li");
+      li.innerHTML = '<input type="text" placeholder="Nama Perusahaan: Jabatan dan Tahun" class="form-control">';
+      ul.appendChild(li);
+    }
+
+    function addSkill() {
+      var ul = document.getElementById("organizationList");
+      var li = document.createElement("li");
+      li.innerHTML = '<input type="text" placeholder="Keterampilan" class="form-control">';
+      ul.appendChild(li);
+    }
+
+    function addHobi() {
+      var ul = document.getElementById("hobiList");
+      var li = document.createElement("li");
+      li.innerHTML = '<input type="text" placeholder="Hobi" class="form-control">';
+      ul.appendChild(li);
+    }
+
+    function submitCV() {
+      var profilePicSrc = document.getElementById('profilePic').src;
+      var name = document.getElementById('nameInput').value.trim();
+      var address = document.getElementById('addressInput').value.trim();
+      var email = document.getElementById('emailInput').value.trim();
+      var phone = document.getElementById('phoneInput').value.trim();
+
+      if (!profilePicSrc || !name || !address || !email || !phone) {
+        alert("Harap isi semua bidang yang diperlukan.");
+        return;
+      }
+
+      document.getElementById('previewContainer').style.display = 'block';
+
+      document.getElementById('profilePicPreview').src = profilePicSrc;
+      document.getElementById('namePreview').innerText = name;
+      document.getElementById('addressPreview').innerText = address;
+      document.getElementById('emailPreview').innerText = email;
+      document.getElementById('phonePreview').innerText = phone;
+      document.getElementById('facebookPreview').innerText = document.getElementById('facebookInput').value.trim();
+      document.getElementById('twitterPreview').innerText = document.getElementById('twitterInput').value.trim();
+      document.getElementById('instagramPreview').innerText = document.getElementById('instagramInput').value.trim();
+      document.getElementById('githubPreview').innerText = document.getElementById('githubInput').value.trim();
+
+      updatePreviewList('personalSkillList', 'personalSkillPreviewList');
+      updatePreviewList('educationList', 'educationPreviewList');
+      updatePreviewList('experienceList', 'experiencePreviewList');
+      updatePreviewList('organizationList', 'organizationPreviewList');
+      updatePreviewList('hobiList', 'hobiPreviewList');
+    }
+
+    function updatePreviewList(inputListId, previewListId) {
+      var inputList = document.getElementById(inputListId);
+      var previewList = document.getElementById(previewListId);
+      previewList.innerHTML = '';
+
+      for (var i = 0; i < inputList.children.length; i++) {
+        var li = document.createElement("li");
+        li.innerText = inputList.children[i].children[0].value;
+        previewList.appendChild(li);
+      }
+    }
+
+    function saveAsPDF() {
+      document.getElementById('previewButtons').classList.add('hidden');
+      html2canvas(document.getElementById('previewContainer')).then(canvas => {
+        var imgData = canvas.toDataURL('image/png');
+        var doc = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4'
+        });
+        var imgProps = doc.getImageProperties(imgData);
+        var pdfWidth = doc.internal.pageSize.getWidth();
+        var pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        doc.save('cv.pdf');
+        document.getElementById('previewButtons').classList.remove('hidden');
+      });
+    }
+
+    function printCV() {
+      document.getElementById('previewButtons').classList.add('hidden');
+      window.print();
+      document.getElementById('previewButtons').classList.remove('hidden');
+    }
+
+    function saveAsImage() {
+      document.getElementById('previewButtons').classList.add('hidden');
+      html2canvas(document.getElementById('previewContainer')).then(canvas => {
+        var link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'cv.png';
+        link.click();
+        document.getElementById('previewButtons').classList.remove('hidden');
+      });
+    }
+  </script>
+</body>
+</html>
+
