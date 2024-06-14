@@ -62,78 +62,76 @@
       width: 24px;
       height: 24px;
     }
+
     /* untuk input image */
     .position-relative {
-  position: relative;
-}
+      position: relative;
+    }
 
-.upload-label {
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-}
+    .upload-label {
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+    }
 
-.upload-label img {
-  width: 200px;
-  height: 350px;
-  object-fit: cover;
-  border: 2px solid #007bff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    .upload-label img {
+      width: 200px;
+      height: 350px;
+      object-fit: cover;
+      border: 2px solid #007bff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-.upload-label .overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: rgba(0, 0, 0, 0.5);
-  ;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .upload-label .overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      transition: .5s ease;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.upload-label:hover .overlay {
-  opacity: 1;
-}
+    .upload-label:hover .overlay {
+      opacity: 1;
+    }
 
-.upload-label .text {
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-
+    .upload-label .text {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
+  <!-- Bagian input CV dimulai -->
   <div id="inputPage">
     <div class="container">
-      <h1 class="text-center mt-3 mb-3 h5"> Form isi Data Curriculum Vitae</h1>
+      <h1 class="text-center mt-3 mb-3 h5">Form isi Data Curriculum Vitae</h1>
     </div>
     <div class="container">
       <div class="row no-gutters">
+        <!-- Kolom kiri untuk informasi pribadi dan media sosial -->
         <div class="col-md-4 left-column">
           <div class="p-4">
+            <!-- Input gambar profil -->
             <div class="d-flex flex-column align-items-center p-4 position-relative" width="200px" height="350px">
               <input type="file" id="profilePicInput" onchange="previewImage(event)" class="d-none" width="200px" height="350px">
-              <label for="profilePicInput" class="upload-label" >
+              <label for="profilePicInput" class="upload-label">
                 <img id="profilePic" src="default-profile.png" class="img-fluid mb-3" alt="klik tambah gambar" width="200px" height="350px">
                 <div class="overlay">
                   <div class="text">Upload</div>
-                  
-
                 </div>
               </label>
             </div>
             
-            
-
+            <!-- Input nama dan informasi kontak -->
             <h1 class="mt-3 text-center">
               <input type="text" id="nameInput" value="Nama Anda" class="form-control">
             </h1>
@@ -146,6 +144,7 @@
               <input type="tel" id="phoneInput" value="080209090909" class="form-control">
             </p>
 
+            <!-- Input media sosial -->
             <h5 class="h5">Sosial Media</h5>
             <div class="social-media">
               <div class="row mb-2">
@@ -166,72 +165,72 @@
               </div>
             </div>
 
+            <!-- Input personal skill -->
             <h5 class="h5 text-center">Personal Skill</h5>
-            <ul id="personalSkillList">
-              <li><input type="text" value="Nama skill-tingkat penguasaan" class="form-control"></li>
-              <li><input type="text" value="Nama skill-tingkat penguasaan" class="form-control"></li>
-              <li><input type="text" value="Nama skill-tingkat penguasaan" class="form-control"></li>
+            <ul id="personalSkillList" class="list-unstyled">
+              <li class="d-flex align-items-center mb-2"><input type="text" value="Nama skill-tingkat penguasaan" class="form-control mr-2"></li>
+              <li class="d-flex align-items-center mb-2"><input type="text" value="Nama skill-tingkat penguasaan" class="form-control mr-2"></li>
+              <li class="d-flex align-items-center mb-2"><input type="text" value="Nama skill-tingkat penguasaan" class="form-control mr-2"></li>
             </ul>
-            
+            <!-- Tombol untuk menambah personal skill -->
             <button onclick="addPersonalSkill()" class="btn btn-primary"><i class="fas fa-plus"></i></button>
           </div>
         </div>
+        
+        <!-- Kolom kanan untuk pendidikan, pengalaman kerja, organisasi, dan hobi -->
         <div class="col-md-8 right-column">
           <div class="p-4">
+            <!-- Input pendidikan -->
             <h5 class="h5">Pendidikan</h5>
             <ul id="educationList">
-              <li>
-                <input type="text" value="nama sd - tahun lulus" class="form-control">
-              </li>
-              <li>
-                <input type="text" value="nama smp - tahun lulus" class="form-control">
-              </li>
-              <li>
-                <input type="text" value="nama sma - tahun lulus" class="form-control">
-              </li>
-              <!-- Tambahkan entri pendidikan lainnya sesuai kebutuhan -->
+              <li class="d-flex align-items-center mb-2"><input type="text" value="nama sd - tahun lulus" class="form-control mr-2"></li>
+              <li class="d-flex align-items-center mb-2"><input type="text" value="nama smp - tahun lulus" class="form-control mr-2"></li>
+              <li class="d-flex align-items-center mb-2"><input type="text" value="nama sma - tahun lulus" class="form-control mr-2"></li>
             </ul>
+            <!-- Tombol untuk menambah pendidikan -->
             <button onclick="addEducation()" class="btn btn-primary"><i class="fas fa-plus"></i></button>
             <hr>
+            <!-- Input pengalaman kerja -->
             <h5 class="h5">Pengalaman Kerja</h5>
             <ul id="experienceList">
-              <li><input type="text" value="Nama Perusahaan: Jabatan dan Tahun" class="form-control"></li>
-              <li><input type="text" value="Nama Perusahaan: Jabatan dan Tahun" class="form-control"></li>
-              <li><input type="text" value="Nama Perusahaan: Jabatan dan Tahun" class="form-control"></li>
+              <li class="d-flex align-items-center mb-2"><input type="text" value="Nama Perusahaan: Jabatan dan (dari tahun-sampai tahun)" class="form-control mr-2"></li>
+              <li class="d-flex align-items-center mb-2"><input type="text" value="Nama Perusahaan: Jabatan dan (dari tahun-sampai tahun)" class="form-control mr-2"></li>
+              <li class="d-flex align-items-center mb-2"><input type="text" value="Nama Perusahaan: Jabatan dan (dari tahun-sampai tahun)" class="form-control mr-2"></li>
             </ul>
-            
-            <button onclick="addExperience()" class="btn btn-primary"><i class="fas fa-plus"></i> </button>
+            <!-- Tombol untuk menambah pengalaman kerja -->
+            <button onclick="addExperience()" class="btn btn-primary"><i class="fas fa-plus"></i></button>
             <hr>
+            <!-- Input pengalaman organisasi -->
             <h5 class="h5">Pengalaman Organisasi</h5>
             <ul id="organizationList">
-              <li><input type="text" value="nama organisasi - jabatan -(dari tahun-sampai tahun) " class="form-control"></li>
-              <li><input type="text" value="nama organisasi - jabatan -(dari tahun-sampai tahun) " class="form-control"></li>
+              <li class="d-flex align-items-center mb-2"><input type="text" value="nama organisasi - jabatan -(dari tahun-sampai tahun)" class="form-control mr-2"></li>
             </ul>
-            
+            <!-- Tombol untuk menambah pengalaman organisasi -->
             <button onclick="addSkill()" class="btn btn-primary"><i class="fas fa-plus"></i></button>
             <hr>
+            <!-- Input hobi -->
             <h5 class="h5">Hobi</h5>
             <ul id="hobiList">
-              <li><input type="text" value="misalkan macing" class="form-control"></li>
-              <li><input type="text" value="misalkan main game" class="form-control"></li>
+              <li class="d-flex align-items-center mb-2"><input type="text" value="misalkan macing" class="form-control mr-2"></li>
+              <li class="d-flex align-items-center mb-2"><input type="text" value="misalkan main game" class="form-control mr-2"></li>
             </ul>
-            
-            <button onclick="addHobi()" class="btn btn-primary">
-              <i class="fas fa-plus"></i>
-            </button>
-            
+            <!-- Tombol untuk menambah hobi -->
+            <button onclick="addHobi()" class="btn btn-primary"><i class="fas fa-plus"></i></button>
             <hr>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Tombol submit untuk menyimpan data dan pratinjau -->
     <div class="container text-center mb-5">
       <button onclick="submitCV()" class="btn btn-primary mt-3">Submit dan Preview</button>
     </div>
   </div>
 
+  <!-- JavaScript untuk memanipulasi data -->
   <script>
+    // Fungsi untuk menampilkan pratinjau gambar profil yang diupload
     function previewImage(event) {
       var reader = new FileReader();
       reader.onload = function() {
@@ -241,41 +240,86 @@
       reader.readAsDataURL(event.target.files[0]);
     }
 
+    // Fungsi untuk menambahkan tombol hapus pada item yang sudah ada saat halaman dimuat
+    function addRemoveButtonToExistingItems() {
+      addRemoveButtonsToList('personalSkillList');
+      addRemoveButtonsToList('educationList');
+      addRemoveButtonsToList('experienceList');
+      addRemoveButtonsToList('organizationList');
+      addRemoveButtonsToList('hobiList');
+    }
+
+    // Fungsi untuk menambahkan tombol hapus pada setiap item dalam daftar tertentu
+    function addRemoveButtonsToList(listId) {
+      var ul = document.getElementById(listId);
+      var items = ul.getElementsByTagName("li");
+      for (var i = 0; i < items.length; i++) {
+        addRemoveButton(items[i]);
+      }
+    }
+
+    // Fungsi untuk menambahkan tombol hapus pada elemen <li>
+    function addRemoveButton(li) {
+      var removeButton = document.createElement("button");
+      removeButton.className = "btn btn-danger btn-sm ml-2";
+      removeButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+      removeButton.onclick = function() {
+        li.parentNode.removeChild(li);
+      };
+      li.appendChild(removeButton);
+    }
+
+    // Fungsi untuk menambah personal skill baru ke daftar
     function addPersonalSkill() {
       var ul = document.getElementById("personalSkillList");
       var li = document.createElement("li");
-      li.innerHTML = '<input type="text" placeholder="Nama Sekolah: Gelar dan Tahun" class="form-control" >';
+      li.className = "d-flex align-items-center mb-2";
+      li.innerHTML = '<input type="text" value="nama skill - tingkat penguasaan" class="form-control mr-2">';
+      addRemoveButton(li);
       ul.appendChild(li);
     }
 
+    // Fungsi untuk menambah pendidikan baru ke daftar
     function addEducation() {
       var ul = document.getElementById("educationList");
       var li = document.createElement("li");
-      li.innerHTML = '<input type="text" placeholder="Nama Sekolah: Gelar dan Tahun" class="form-control">';
+      li.className = "d-flex align-items-center mb-2";
+      li.innerHTML = '<input type="text" value="Universitas: Gelar dan (dari tahun-sampai tahun) status-lulus/tidak" class="form-control mr-2">';
+      addRemoveButton(li);
       ul.appendChild(li);
     }
 
+    // Fungsi untuk menambah pengalaman kerja baru ke daftar
     function addExperience() {
       var ul = document.getElementById("experienceList");
       var li = document.createElement("li");
-      li.innerHTML = '<input type="text" placeholder="Nama Perusahaan: Jabatan dan Tahun" class="form-control">';
+      li.className = "d-flex align-items-center mb-2";
+      li.innerHTML = '<input type="text" value="Nama Perusahaan: Jabatan dan (dari tahun-sampai tahun)" class="form-control mr-2">';
+      addRemoveButton(li);
       ul.appendChild(li);
     }
 
+    // Fungsi untuk menambah pengalaman organisasi baru ke daftar
     function addSkill() {
       var ul = document.getElementById("organizationList");
       var li = document.createElement("li");
-      li.innerHTML = '<input type="text" placeholder="Keterampilan" class="form-control">';
+      li.className = "d-flex align-items-center mb-2";
+      li.innerHTML = '<input type="text" value="nama organisasi - jabatan -(dari tahun-sampai tahun)" class="form-control mr-2">';
+      addRemoveButton(li);
       ul.appendChild(li);
     }
 
+    // Fungsi untuk menambah hobi baru ke daftar
     function addHobi() {
       var ul = document.getElementById("hobiList");
       var li = document.createElement("li");
-      li.innerHTML = '<input type="text" placeholder="Hobi" class="form-control">';
+      li.className = "d-flex align-items-center mb-2";
+      li.innerHTML = '<input type="text" value="misalkan karaoke" class="form-control mr-2">';
+      addRemoveButton(li);
       ul.appendChild(li);
     }
 
+    // Fungsi untuk menyimpan data CV ke local storage dan menuju halaman preview
     function submitCV() {
       var profilePicSrc = document.getElementById('profilePic').src;
       var name = document.getElementById('nameInput').value.trim();
@@ -288,6 +332,7 @@
         return;
       }
 
+      // Menyimpan data ke local storage
       localStorage.setItem('profilePicSrc', profilePicSrc);
       localStorage.setItem('name', name);
       localStorage.setItem('address', address);
@@ -298,15 +343,18 @@
       localStorage.setItem('instagram', document.getElementById('instagramInput').value.trim());
       localStorage.setItem('github', document.getElementById('githubInput').value.trim());
 
+      // Menyimpan data daftar ke local storage
       saveListToLocalStorage('personalSkillList', 'personalSkillData');
       saveListToLocalStorage('educationList', 'educationData');
       saveListToLocalStorage('experienceList', 'experienceData');
       saveListToLocalStorage('organizationList', 'organizationData');
       saveListToLocalStorage('hobiList', 'hobiData');
 
+      // Menuju halaman preview
       window.location.href = 'preview.html';
     }
 
+    // Fungsi untuk menyimpan data dari daftar ke local storage
     function saveListToLocalStorage(inputListId, localStorageKey) {
       var inputList = document.getElementById(inputListId);
       var data = [];
@@ -316,15 +364,10 @@
       localStorage.setItem(localStorageKey, JSON.stringify(data));
     }
 
-        function previewImage(event) {
-      var reader = new FileReader();
-      reader.onload = function() {
-        var output = document.getElementById('profilePic');
-        output.src = reader.result;
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
-
+    // Menambahkan tombol hapus ke item yang sudah ada saat halaman dimuat
+    window.onload = function() {
+      addRemoveButtonToExistingItems();
+    };
   </script>
 </body>
 </html>
