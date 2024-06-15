@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
               loadListFromLocalStorage('experiencePreviewList', 'experienceData');
               loadListFromLocalStorage('organizationPreviewList', 'organizationData');
               loadListFromLocalStorage('hobiPreviewList', 'hobiData');
+              loadFormsFromLocalStorage()
           });
   
   
@@ -80,3 +81,32 @@ document.addEventListener('DOMContentLoaded', function() {
           document.getElementById('previewButtons').style.display = 'block';
         });
       }
+      function loadFormsFromLocalStorage() {
+        var data = localStorage.getItem('newFormsData');
+        if (data) {
+            var forms = JSON.parse(data);
+            var previewContainer = document.getElementById('preview-container');
+            
+            forms.forEach(function(form) {
+                // Buat elemen untuk judul form
+                var formTitle = document.createElement('h5');
+                formTitle.className = "judul";
+                formTitle.innerText = form.title;
+                previewContainer.appendChild(formTitle);
+                
+                // Buat elemen untuk daftar item
+                var ul = document.createElement('ul');
+                form.items.forEach(function(item) {
+                    var li = document.createElement('li');
+                    li.innerText = item;
+                    ul.appendChild(li);
+                });
+                previewContainer.appendChild(ul);
+            });
+        } else {
+            console.log('No data found in localStorage');
+        }
+    }
+    
+    // Panggil fungsi untuk memuat dan menampilkan data
+    // loadFormsFromLocalStorage();

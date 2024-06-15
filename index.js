@@ -119,6 +119,7 @@
       saveListToLocalStorage('experienceList', 'experienceData');
       saveListToLocalStorage('organizationList', 'organizationData');
       saveListToLocalStorage('hobiList', 'hobiData');
+      saveNewFormsToLocalStorage();
 
       // Menuju halaman preview
       window.location.href = 'preview.html';
@@ -138,3 +139,84 @@
     window.onload = function() {
       addRemoveButtonToExistingItems();
     };
+    // kode untuk membuat formulis baru
+
+    function createNewForm() {
+      // Minta pengguna untuk memasukkan judul formulir baru
+      var formTitle = prompt("Masukkan judul formulir baru:");
+    
+      if (formTitle) {
+        // Buat div baru untuk formulir
+        // var kol = document.getElementsByClassName('right-column')
+        var container = document.querySelector('.container');
+        var div = document.createElement('div');
+        div.className = "mb-3 new-form"; // Tambahkan kelas untuk formulir baru
+    
+        // Tambahkan judul
+        var judul = document.createElement("h5");
+        judul.className = "judul";
+        judul.innerText = formTitle;
+    
+        // Buat daftar input baru
+        var ul = document.createElement("ul");
+        ul.className = "list-unstyled";
+        
+        // Tambahkan beberapa input contoh
+        var li = document.createElement("li");
+        li.className = "d-flex align-items-center mb-2";
+        li.innerHTML = `<input type="text" value="Contoh data" class="form-control mr-2">`;
+        ul.appendChild(li);
+    
+        // Tambahkan tombol untuk menambah input baru
+        var addButton = document.createElement("button");
+        addButton.className = "btn btn-primary";
+        addButton.innerHTML = '<i class="fas fa-plus"></i>';
+        addButton.onclick = function() {
+          var newLi = document.createElement("li");
+          newLi.className = "d-flex align-items-center mb-2";
+          newLi.innerHTML = `<input type="text" value="Contoh data" class="form-control mr-2">`;
+          ul.appendChild(newLi);
+        };
+    
+        // Tambahkan elemen ke div baru
+        // kol.appendChild(div);
+        div.appendChild(judul);
+        div.appendChild(ul);
+        div.appendChild(addButton);
+    
+        // Tambahkan tombol untuk menghapus formulir
+        var removeButton = document.createElement("button");
+        removeButton.className = "btn btn-danger ml-2";
+        removeButton.innerText = "Remove";
+        removeButton.onclick = function() {
+          div.remove();
+        };
+        div.appendChild(removeButton);
+    
+        // Tambahkan div baru ke kontainer
+        container.appendChild(div);
+      }
+    }
+
+    //save formulis baru ke strorage
+
+    function saveNewFormsToLocalStorage() {
+      var newForms = document.querySelectorAll('.new-form');
+      var data = [];
+    
+      newForms.forEach(function(form) {
+        var formTitle = form.querySelector('.judul').innerText;
+        var ul = form.querySelector('ul');
+        var items = [];
+    
+        ul.querySelectorAll('li').forEach(function(li) {
+          var input = li.querySelector('input').value;
+          items.push(input);
+        });
+    
+        data.push({ title: formTitle, items: items });
+      });
+    
+      localStorage.setItem('newFormsData', JSON.stringify(data));
+    }
+    
