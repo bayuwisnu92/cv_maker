@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+
+  h1, h2 {
+    color: #343a40;
+  }
+
+  hr {
+    border-top: 1px solid #6c757d;
+  }
+
+  .hr2 {
+    border-top: 4px solid rgb(12, 121, 245);
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  ul li {
+    margin-bottom: 10px;
+  }
+
+  .h5 {
+    width: 100%;
+    height: 30px;
+    background-color: black;
+    color: white;
+    padding: 2px 3px;
+    text-align: center;
+  }
+
+  .left-column {
+    background-color: #e3f2fd;
+    min-height: 100vh;
+    padding-top: 30px;
+  }
+
+  .right-column {
+    background-color: #fff;
+    padding: 30px;
+  }
+
+  .rounded-circle {
+    width: 150px;
+    height: 150px;
+  }
+
+  .social-media img {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* untuk input image */
+  .position-relative {
+    position: relative;
+  }
+
+  .upload-label {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+  }
+
+  .upload-label img {
+    width: 200px;
+    height: 350px;
+    object-fit: cover;
+    border: 2px solid #007bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .upload-label .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .upload-label:hover .overlay {
+    opacity: 1;
+  }
+
+  .upload-label .text {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }

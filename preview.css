@@ -1,0 +1,63 @@
+body {
+  font-family: 'Calibri', 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  font-size: 20px;
+}
+
+h1, h5 {
+  color: #343a40;
+}
+
+hr {
+  border-top: 1px solid #6c757d;
+}
+
+.left-column {
+  background-color: #e3f2fd;
+  min-height: 100vh;
+  padding-top: 30px;
+}
+
+.right-column {
+  background-color: #fdf6f6;
+  padding: 30px;
+  color: black;
+}
+
+.rounded-circle {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.social-media img {
+  width: 24px;
+  height: 24px;
+}
+
+.container-header {
+  background-color: #e3f2fd;
+  color: black;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.preview-buttons {
+  margin-top: 20px;
+}
+
+.judul {
+  background-color: black;
+  color: white;
+  padding: 7px 0px 7px 20px;
+}
+.isi{
+    margin-top: 15px;
+    border: 1px solid rgb(240, 212, 212);
+    background-color:black;
+    margin-bottom: 10px;
+}
+.bawah{
+    margin-bottom: 20px;
+}
