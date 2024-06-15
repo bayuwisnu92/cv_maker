@@ -219,4 +219,29 @@
     
       localStorage.setItem('newFormsData', JSON.stringify(data));
     }
+    // rubah warna 
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ambil tombol dengan id 'changeColorButton'
+      var changeColorButton = document.getElementById('changeColorButton');
+      
+      // Tambahkan event listener untuk click pada tombol
+      changeColorButton.addEventListener('click', function() {
+          // Ambil semua elemen dengan kelas 'isi'
+          var isiElements = document.querySelectorAll('.isi');
+          // Ambil semua elemen dengan kelas 'judul'
+          var judulElements = document.querySelectorAll('.judul');
+          
+          // Ubah background color semua elemen dengan kelas 'isi' menjadi biru
+          isiElements.forEach(function(element) {
+              element.style.backgroundColor = 'blue';
+          });
+          
+          // Ubah background color semua elemen dengan kelas 'judul' menjadi biru
+          judulElements.forEach(function(element) {
+              element.style.backgroundColor = 'blue';
+          });
+      });
+  });
+  
     

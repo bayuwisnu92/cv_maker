@@ -19,7 +19,7 @@ hr {
 }
 
 .right-column {
-  background-color: #eccaa3;
+  background-color: #faf8f5;
   padding: 30px;
   color: black;
 }
@@ -37,7 +37,7 @@ hr {
 
 .container-header {
   background-color: #e3f2fd;
-  color: black;
+  color: rgb(17, 20, 240);
   padding: 20px;
   text-align: center;
   margin-top: 20px;
@@ -48,32 +48,16 @@ hr {
 }
 
 .judul {
-  background-color: black;
+  background-color:blue;
   color: white;
   padding: 7px 0px 7px 20px;
 }
 .isi{
     margin-top: 15px;
     border: 1px solid rgb(240, 212, 212);
-    background-color:black;
+    background-color:blue;
     margin-bottom: 10px;
 }
 .bawah{
     margin-bottom: 20px;
-}
-#changeColorButton1{
-  background-color: navy;
-}
-#changeColorButton2{
-  background-color: black;
-}
-#changeColorButton3{
-  background-color: pink;
-  color: black;
-}
-#changeColorButton4{
-  background-color: red;
-}
-#changeColorButton5{
-  background-color: green;
 }
