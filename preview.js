@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Mengambil data dari localStorage
+
               var profilePicSrc = localStorage.getItem('profilePicSrc');
               var name = localStorage.getItem('name');
               var address = localStorage.getItem('address');
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
               loadListFromLocalStorage('organizationPreviewList', 'organizationData');
               loadListFromLocalStorage('hobiPreviewList', 'hobiData');
               loadFormsFromLocalStorage()
+              alert("selamat data anda berhasil diinput");
           });
   
   

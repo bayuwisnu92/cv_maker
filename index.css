@@ -1,106 +1,157 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-  }
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+}
 
-  h1, h2 {
-    color: #343a40;
-  }
+h1, h2, h5 {
+  color: #343a40;
+}
 
-  hr {
-    border-top: 1px solid #6c757d;
-  }
+.judul2 {
+  color: #007bff;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 
-  .hr2 {
-    border-top: 4px solid rgb(12, 121, 245);
-  }
+.hr2 {
+  border-top: 4px solid #007bff;
+}
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
+ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-  ul li {
-    margin-bottom: 10px;
-  }
+ul li {
+  margin-bottom: 10px;
+}
 
-  .h5 {
-    width: 100%;
-    height: 30px;
-    background-color: black;
-    color: white;
-    padding: 2px 3px;
-    text-align: center;
-  }
+.judul {
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-  .left-column {
-    background-color: #e3f2fd;
-    min-height: 100vh;
-    padding-top: 30px;
-  }
+.left-column {
+  background-color: #e3f2fd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .right-column {
-    background-color: #fff;
-    padding: 30px;
-  }
+.right-column {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .rounded-circle {
-    width: 150px;
-    height: 150px;
-  }
+.rounded-circle {
+  width: 150px;
+  height: 150px;
+}
 
-  .social-media img {
-    width: 24px;
-    height: 24px;
-  }
+.social-media img {
+  width: 24px;
+  height: 24px;
+}
 
-  /* untuk input image */
-  .position-relative {
-    position: relative;
-  }
+.position-relative {
+  position: relative;
+}
 
-  .upload-label {
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
-  }
+.upload-label {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
 
-  .upload-label img {
-    width: 200px;
-    height: 350px;
-    object-fit: cover;
-    border: 2px solid #007bff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+.upload-label img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .upload-label .overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.upload-label .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .upload-label:hover .overlay {
-    opacity: 1;
-  }
+.upload-label:hover .overlay {
+  opacity: 1;
+}
 
-  .upload-label .text {
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
+.upload-label .text {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.fas:hover {
+  background-color: #343a40;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.row.full-width {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.judul {
+  flex: 1;
+  margin-right: 10px; /* Optional: to add some space between the title and the button */
+}
+
+/* Custom CSS for responsiveness */
+@media (max-width: 768px) {
+  .left-column, .right-column {
+    padding: 15px;
   }
 
   .judul {
-    background-color: black;
-    color: white;
-    padding: 7px 0px 7px 20px;
+    font-size: 16px;
   }
+
+  .upload-label img {
+    width: 100%;
+    height: auto;
+  }
+
+  .col-2, .col-10, .col-11, .col-12 {
+    flex: 100%;
+    max-width: 100%;
+  }
+
+  .row.align-items-center {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .row.align-items-center .col, .row.align-items-center .col-auto {
+    flex: none;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+}
