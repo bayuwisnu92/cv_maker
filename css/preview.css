@@ -81,7 +81,7 @@ hr {
   border-style: double;
 }
 .isi{
-  background-image: url('img/hal1.jpg');
+  background-image: url('../img/hal1.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   

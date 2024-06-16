@@ -58,7 +58,7 @@ body {
   .isi {
     margin-top: 15px;
     border: 1px solid #ccc;
-    background-image: url('img/hal1.jpg');
+    background-image: url('../img/hal1.jpg');
     background-size: cover; 
       background-repeat: no-repeat; 
       /* background-attachment: fixed;  */
