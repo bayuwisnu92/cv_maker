@@ -149,7 +149,7 @@
       if (formTitle) {
         // Buat div baru untuk formulir
         // var kol = document.getElementsByClassName('right-column')
-        var container = document.querySelector('.container');
+        var container = document.querySelector('.right-column');
         var div = document.createElement('div');
         div.className = "mb-3 new-form"; // Tambahkan kelas untuk formulir baru
     

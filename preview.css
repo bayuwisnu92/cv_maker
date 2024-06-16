@@ -78,5 +78,5 @@ hr {
   background-color: green;
 }
 .bol{
-  border-radius: 50%;
+  border-style: double;
 }
