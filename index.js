@@ -122,7 +122,7 @@
       saveNewFormsToLocalStorage();
 
       // Menuju halaman preview
-      window.location.href = 'preview.html';
+      window.location.href = 'halaman3.html';
     }
 
     // Fungsi untuk menyimpan data dari daftar ke local storage

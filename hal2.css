@@ -5,23 +5,23 @@ body {
 }
 
 h1, h5 {
-  color: #343a40;
+  color: #3e3e3e;
 }
 
 hr {
-  border-top: 1px solid #6c757d;
+  border-top: 1px solid #aaa;
 }
 
 .left-column {
-  background-color: #e3f2fd;
+  background-color: #f0ebe1;
   min-height: 100vh;
   padding-top: 30px;
 }
 
 .right-column {
-  background-color: #faf8f5;
+  background-color: #fff;
   padding: 30px;
-  color: black;
+  color: #3e3e3e;
 }
 
 .rounded-circle {
@@ -36,8 +36,8 @@ hr {
 }
 
 .container-header {
-  background-color: #e3f2fd;
-  color: rgb(17, 20, 240);
+  background-color: #3e3e3e;
+  color: #fff;
   padding: 20px;
   text-align: center;
   margin-top: 20px;
@@ -48,16 +48,20 @@ hr {
 }
 
 .judul {
-  background-color:blue;
-  color: white;
-  padding: 7px 0px 7px 20px;
+  background-color: #3e3e3e;
+  color: #fff;
+  padding: 10px 20px;
+  margin-top: 20px;
 }
-.isi{
-    margin-top: 15px;
-    border: 1px solid rgb(240, 212, 212);
-    background-color:blue;
-    margin-bottom: 10px;
+
+.isi {
+  margin-top: 15px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-.bawah{
-    margin-bottom: 20px;
+
+.bawah {
+  margin-bottom: 20px;
 }

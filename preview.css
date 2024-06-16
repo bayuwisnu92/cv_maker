@@ -13,13 +13,13 @@ hr {
 }
 
 .left-column {
-  background-color: #e3f2fd;
+  /* background-color: #e3f2fd; */
   min-height: 100vh;
   padding-top: 30px;
 }
 
 .right-column {
-  background-color: #eccaa3;
+  /* background-color: #eccaa3; */
   padding: 30px;
   color: black;
 }
@@ -36,7 +36,7 @@ hr {
 }
 
 .container-header {
-  background-color: #e3f2fd;
+  /* background-color: #e3f2fd; */
   color: black;
   padding: 20px;
   text-align: center;
@@ -79,4 +79,10 @@ hr {
 }
 .bol{
   border-style: double;
+}
+.isi{
+  background-image: url('img/hal1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  
 }
