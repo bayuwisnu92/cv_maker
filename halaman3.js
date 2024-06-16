@@ -49,10 +49,35 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(callback, 500);  // Adjust the timeout as needed
     }
 
-    function saveAsPDF() {
+    
+
+    function printCV() {
+      document.getElementById('previewButtons').style.display = 'none';
+      window.print();
+      document.getElementById('previewButtons').style.display = 'block';
+    }
+
+    function saveAsImage(callback) {
       document.getElementById('previewButtons').style.display = 'none';
       html2canvas(document.getElementById('previewPage')).then(canvas => {
-        var imgData = canvas.toDataURL('image/png');
+        var imgData = canvas.toDataURL('image/jpeg');
+        var link = document.createElement('a');
+        var username = document.getElementById('namePreview').innerText;
+        link.href = imgData;
+        link.download = username ? username + '.jpg' : 'cv.jpg';
+        link.click();
+        document.getElementById('previewButtons').style.display = 'block';
+        if (callback) {
+          callback(imgData);
+        }
+      }).catch(function (error) {
+        console.error('Error capturing the image: ', error);
+      });
+    }
+
+    function saveAsPDF() {
+      saveAsImage(function(imgData) {
+        const { jsPDF } = window.jspdf;
         var doc = new jsPDF({
           orientation: 'portrait',
           unit: 'mm',
@@ -61,28 +86,11 @@ document.addEventListener('DOMContentLoaded', function() {
         var imgProps = doc.getImageProperties(imgData);
         var pdfWidth = doc.internal.pageSize.getWidth();
         var pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-        doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        doc.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
         doc.save('cv.pdf');
-        document.getElementById('previewButtons').style.display = 'block';
       });
     }
-
-    function printCV() {
-      document.getElementById('previewButtons').style.display = 'none';
-      window.print();
-      document.getElementById('previewButtons').style.display = 'block';
-    }
-
-    function saveAsImage() {
-      document.getElementById('previewButtons').style.display = 'none';
-      html2canvas(document.getElementById('previewPage')).then(canvas => {
-        var link = document.createElement('a');
-        link.href = canvas.toDataURL();
-        link.download = 'cv.png';
-        link.click();
-        document.getElementById('previewButtons').style.display = 'block';
-      });
-    }
+    
     function loadFormsFromLocalStorage() {
       var data = localStorage.getItem('newFormsData');
       if (data) {
