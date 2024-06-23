@@ -157,3 +157,9 @@ document.addEventListener('DOMContentLoaded', function() {
   changeBackgroundColor('changeColorButton4', 'red');
   changeBackgroundColor('changeColorButton5', 'green');
 });
+
+fetch('navbar/nav.html')
+.then(response => response.text())
+.then(data => {
+    document.getElementById('navbar-container').innerHTML = data;
+});

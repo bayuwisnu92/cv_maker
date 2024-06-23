@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - Buat CV Online</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        .about-header {
+            background: url('img/hal1.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .about-section {
+            padding: 60px 0;
+        }
+        .about-section h2 {
+            margin-bottom: 20px;
+        }
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .team-section {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+        .team-member {
+            margin-bottom: 30px;
+        }
+        .team-member img {
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .team-member h4 {
+            margin-bottom: 10px;
+        }
+        .vision-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+        .vision-section h2 {
+            margin-bottom: 20px;
+        }
+        .vision-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <!-- About Header Section -->
+    <div class="about-header">
+        <h1>Tentang Kami</h1>
+    </div>
+
+    <!-- About Section -->
+    <div class="container about-section">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Tentang Buat CV Online</h2>
+                <p>Buat CV Online adalah layanan yang dirancang untuk membantu Anda membuat CV profesional dengan mudah dan cepat. Dengan berbagai template yang menarik dan antarmuka yang ramah pengguna, kami memastikan Anda dapat membuat CV yang sesuai dengan kebutuhan Anda tanpa kesulitan.</p>
+                <p>Tujuan kami adalah memberikan alat yang efektif dan efisien bagi siapa saja yang ingin meningkatkan peluang mereka dalam mencari pekerjaan dengan menyediakan CV yang profesional dan menarik.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="container team-section">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h2>Tim Kami</h2>
+            </div>
+            <div class="col-md-4 team-member">
+                <img src="img/Gambar WhatsApp 2024-05-17 pukul 13.07.57_0f393432.jpg" alt="Tim Member" class="img-fluid">
+                <h4>Bayu wisnu aji</h4>
+                <p>Creator website</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Vision Section -->
+    <div class="container vision-section">
+        <h2>Visi dan Misi Kami</h2>
+        <p>Visi kami adalah menjadi platform terdepan dalam pembuatan CV online yang membantu setiap individu mencapai kesuksesan profesional. Misi kami adalah menyediakan alat yang mudah digunakan dan aksesibel untuk membuat CV yang profesional dan menarik, serta mendukung pengguna kami dalam setiap langkah karir mereka.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        fetch('navbar/nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                });
+      </script>
+</body>
+</html>
