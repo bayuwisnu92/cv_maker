@@ -220,8 +220,34 @@
     
       localStorage.setItem('newFormsData', JSON.stringify(data));
     }
-
     
+    document.addEventListener('DOMContentLoaded', function() {
+      let input = document.getElementById('nameInput');
+      let dua = document.getElementById('addressInput');
+
+      // Capitalize the initial value
+      input.value = capitalizeFirstLetter(input.value);
+      dua.value = capitalizeFirstLetter(dua.value);
+
+      // Add event listener for the name input
+      input.addEventListener('input', function() {
+        let caretPosition = input.selectionStart;
+        input.value = capitalizeFirstLetter(input.value);
+        input.setSelectionRange(caretPosition, caretPosition); // Menjaga posisi kursor
+      });
+
+      // Add event listener for the address input
+      dua.addEventListener('input', function() {
+        let caretPosition = dua.selectionStart;
+        dua.value = capitalizeFirstLetter(dua.value);
+        dua.setSelectionRange(caretPosition, caretPosition); // Menjaga posisi kursor
+      });
+
+      // Function to capitalize the first letter
+      function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+    });
    
   
     
