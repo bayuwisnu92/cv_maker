@@ -681,8 +681,8 @@
 }
 
 .cv-header-creative .cv-photo-container {
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
   border-radius: 20px;
   overflow: hidden;
   border: 3px solid #3b82f6;
@@ -696,10 +696,11 @@
 }
 
 .cv-header-creative .cv-name {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 800;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   letter-spacing: -0.5px;
+  color: #ffffff;
 }
 
 .cv-header-creative .cv-contact-pill {
