@@ -696,6 +696,99 @@ function renderCVTemplate(data, template) {
       </div>
     `;
   }
+  if (template === 'aesthetic') {
+    return `
+      <div class="template-aesthetic">
+        <div class="aes-header">
+          <div class="aes-header-left">
+            <h1 class="aes-name">${escapeHtml(pi.name || 'Nama Anda')}</h1>
+            ${data.education?.length ? `<div class="aes-subtitle">${escapeHtml(data.education[0].degree)}<br>${escapeHtml(data.education[0].institution)}</div>` : ''}
+          </div>
+          <div class="aes-header-right">
+            <div class="aes-photo-wrapper">
+              ${photoHtml}
+            </div>
+          </div>
+        </div>
+        
+        <div class="aes-body">
+          <div class="aes-col-left">
+            <div class="aes-section">
+              <div class="aes-pill-title">KONTAK</div>
+              <div class="aes-contact-list">
+                ${pi.phone ? `<div>📞 ${escapeHtml(pi.phone)}</div>` : ''}
+                ${pi.email ? `<div>✉ ${escapeHtml(pi.email)}</div>` : ''}
+                ${pi.address ? `<div>📍 ${escapeHtml(pi.address)}</div>` : ''}
+              </div>
+            </div>
+            
+            ${data.organizations?.length ? `
+            <div class="aes-section">
+              <div class="aes-pill-title">ORGANISASI</div>
+              <ul class="aes-org-list">
+                ${data.organizations.map(o => `<li><strong>${escapeHtml(o.name)}</strong><br>${escapeHtml(o.position)}</li>`).join('')}
+              </ul>
+            </div>
+            ` : ''}
+
+            ${data.skills?.length ? `
+            <div class="aes-section">
+              <div class="aes-pill-title">SKILLS</div>
+              <div class="aes-skills-grid">
+                ${data.skills.map(s => `
+                  <div class="aes-skill-circle-item">
+                    <div class="aes-donut">
+                      <div class="aes-donut-inner"></div>
+                    </div>
+                    <div class="aes-skill-name">${escapeHtml(s.name)}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            ` : ''}
+          </div>
+          
+          <div class="aes-col-right">
+            ${data.ai_summary ? `
+            <div class="aes-section">
+              <div class="aes-pill-title">TENTANG SAYA</div>
+              <div class="aes-text-body">${escapeHtml(data.ai_summary)}</div>
+            </div>
+            ` : ''}
+            
+            ${data.education?.length ? `
+            <div class="aes-section">
+              <div class="aes-pill-title">PENDIDIKAN</div>
+              <div class="aes-timeline">
+                ${data.education.map(e => `
+                  <div class="aes-timeline-item">
+                    <div class="aes-timeline-title">${escapeHtml(e.institution)} (${escapeHtml(e.year)})</div>
+                    <div class="aes-timeline-subtitle">${escapeHtml(e.degree)}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            ` : ''}
+            
+            ${data.experience?.length ? `
+            <div class="aes-section">
+              <div class="aes-pill-title">PENGALAMAN</div>
+              <div class="aes-timeline">
+                ${data.experience.map(e => `
+                  <div class="aes-timeline-item">
+                    <div class="aes-timeline-title">${escapeHtml(e.company)} (${escapeHtml(e.period)})</div>
+                    <div class="aes-timeline-subtitle">${escapeHtml(e.position)}</div>
+                    ${e.description ? `<div class="aes-text-body" style="margin-top:4px">${escapeHtml(e.description)}</div>` : ''}
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            ` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  }
 
   // Creative template
   return `

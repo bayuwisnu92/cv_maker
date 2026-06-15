@@ -23,7 +23,7 @@ const APP_CONFIG = {
   ALLOWED_IMAGE_TYPES: ['image/jpeg', 'image/png', 'image/webp'],
 
   // Template names
-  TEMPLATES: ['modern', 'classic', 'minimal', 'elegant', 'creative', 'professional'],
+  TEMPLATES: ['modern', 'classic', 'minimal', 'elegant', 'creative', 'professional', 'aesthetic'],
 };
 
 // Freeze config so it can't be modified at runtime
