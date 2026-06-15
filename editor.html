@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Editor CV dengan bantuan AI — CV Maker AI">
+  <title>Editor CV — CV Maker AI</title>
+  <link rel="icon" href="img/cv.png" type="image/png">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/editor.css">
+  <link rel="stylesheet" href="css/preview.css">
+</head>
+<body>
+  <div class="bg-mesh"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar-modern" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <span class="brand-icon">📝</span> CV Maker AI
+      </a>
+      <ul class="navbar-links" id="navLinks">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="about.html">Tentang</a></li>
+        <li id="navDashboard" class="hidden"><a href="dashboard.html">Dashboard</a></li>
+        <li id="navEditor" class="hidden"><a href="editor.html">Buat CV</a></li>
+      </ul>
+      <div class="navbar-actions" id="navActions">
+        <div id="guestActions">
+          <a href="login.html" class="btn-ghost btn-sm">Masuk</a>
+          <a href="register.html" class="btn-gradient btn-sm">Daftar</a>
+        </div>
+        <div id="authActions" class="hidden">
+          <div class="navbar-user">
+            <span class="navbar-username" id="navUsername"></span>
+            <button class="btn-ghost btn-sm" onclick="handleLogout()">Keluar</button>
+          </div>
+        </div>
+      </div>
+      <button class="navbar-toggle" id="navToggle" onclick="toggleMobileMenu()">☰</button>
+    </div>
+  </nav>
+
+  <div class="editor-layout">
+    <!-- Editor Header -->
+    <div class="editor-header">
+      <a href="dashboard.html" class="back-btn" title="Kembali">← </a>
+      <input type="text" id="cvTitle" class="cv-title-input" value="CV Saya" placeholder="Judul CV">
+      <span class="auto-save-indicator" id="saveIndicator">—</span>
+      <button class="btn-gradient btn-sm" onclick="saveCV()">💾 Simpan</button>
+    </div>
+
+    <!-- Main Editor Area -->
+    <div class="editor-main">
+      <!-- Left: Form -->
+      <div class="editor-sidebar">
+        <!-- Step Indicator -->
+        <div class="step-indicator">
+          <div class="step-item active" onclick="goToStep(1)">
+            <div class="step-circle">1</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-item" onclick="goToStep(2)">
+            <div class="step-circle">2</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-item" onclick="goToStep(3)">
+            <div class="step-circle">3</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-item" onclick="goToStep(4)">
+            <div class="step-circle">4</div>
+          </div>
+        </div>
+
+        <!-- Step 1: Personal Info -->
+        <div class="step-content active" id="step1">
+          <div class="section-card">
+            <div class="section-header">
+              <h3>👤 Informasi Pribadi</h3>
+            </div>
+
+            <!-- Profile Picture -->
+            <div class="profile-upload">
+              <label class="upload-circle" for="profilePicInput">
+                <img id="profilePicPreview" src="" alt="" style="display:none;">
+                <div class="upload-overlay">📷 Upload</div>
+                <span id="uploadPlaceholder" style="font-size:2rem;">👤</span>
+              </label>
+              <input type="file" id="profilePicInput" accept="image/*" class="hidden">
+              <span class="upload-hint">Klik untuk upload foto (maks 2MB)</span>
+            </div>
+
+            <div class="form-group">
+              <label>Nama Lengkap</label>
+              <input type="text" id="inputName" class="input-modern" placeholder="Bayu Wisnu Aji">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="inputEmail" class="input-modern" placeholder="email@contoh.com">
+            </div>
+            <div class="form-group">
+              <label>Telepon</label>
+              <input type="tel" id="inputPhone" class="input-modern" placeholder="08123456789">
+            </div>
+            <div class="form-group">
+              <label>Alamat</label>
+              <input type="text" id="inputAddress" class="input-modern" placeholder="Jakarta, Indonesia">
+            </div>
+          </div>
+
+          <!-- Social Media -->
+          <div class="section-card">
+            <div class="section-header">
+              <h3>🔗 Sosial Media</h3>
+            </div>
+            <div class="form-group">
+              <label>LinkedIn</label>
+              <input type="text" id="inputLinkedin" class="input-modern" placeholder="linkedin.com/in/username">
+            </div>
+            <div class="form-group">
+              <label>GitHub</label>
+              <input type="text" id="inputGithub" class="input-modern" placeholder="github.com/username">
+            </div>
+            <div class="form-group">
+              <label>Instagram</label>
+              <input type="text" id="inputInstagram" class="input-modern" placeholder="@username">
+            </div>
+            <div class="form-group">
+              <label>Facebook</label>
+              <input type="text" id="inputFacebook" class="input-modern" placeholder="facebook.com/username">
+            </div>
+            <div class="form-group">
+              <label>Twitter / X</label>
+              <input type="text" id="inputTwitter" class="input-modern" placeholder="@username">
+            </div>
+          </div>
+
+          <div class="step-nav">
+            <div></div>
+            <button class="btn-gradient" onclick="nextStep()">Selanjutnya →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Education & Experience -->
+        <div class="step-content" id="step2">
+          <!-- Education -->
+          <div class="section-card">
+            <div class="section-header">
+              <h3>🎓 Pendidikan</h3>
+              <button class="btn-ai" onclick="addEducation()">+ Tambah</button>
+            </div>
+            <div id="educationList"></div>
+            <button class="add-item-btn" onclick="addEducation()">+ Tambah Pendidikan</button>
+          </div>
+
+          <!-- Experience -->
+          <div class="section-card">
+            <div class="section-header">
+              <h3>💼 Pengalaman Kerja</h3>
+              <button class="btn-ai" onclick="addExperience()">+ Tambah</button>
+            </div>
+            <div id="experienceList"></div>
+            <button class="add-item-btn" onclick="addExperience()">+ Tambah Pengalaman</button>
+          </div>
+
+          <div class="step-nav">
+            <button class="btn-ghost" onclick="prevStep()">← Sebelumnya</button>
+            <button class="btn-gradient" onclick="nextStep()">Selanjutnya →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Skills, Orgs, Hobbies -->
+        <div class="step-content" id="step3">
+          <!-- Skills -->
+          <div class="section-card">
+            <div class="section-header">
+              <h3>⚡ Keahlian</h3>
+              <button class="btn-ai" id="suggestSkillsBtn" onclick="suggestSkills()">✨ Saran AI</button>
+            </div>
+            <div id="skillsList"></div>
+            <div id="skillSuggestions" class="skill-suggestions hidden"></div>
+            <button class="add-item-btn" onclick="addSkill()">+ Tambah Skill</button>
+          </div>
+
+          <!-- Organizations -->
+          <div class="section-card">
+            <div class="section-header">
+              <h3>🏢 Organisasi</h3>
+            </div>
+            <div id="organizationList"></div>
+            <button class="add-item-btn" onclick="addOrganization()">+ Tambah Organisasi</button>
+          </div>
+
+          <!-- Hobbies -->
+          <div class="section-card">
+            <div class="section-header">
+              <h3>🎨 Hobi</h3>
+            </div>
+            <div id="hobbyList"></div>
+            <button class="add-item-btn" onclick="addHobby()">+ Tambah Hobi</button>
+          </div>
+
+          <div class="step-nav">
+            <button class="btn-ghost" onclick="prevStep()">← Sebelumnya</button>
+            <button class="btn-gradient" onclick="nextStep()">Selanjutnya →</button>
+          </div>
+        </div>
+
+        <!-- Step 4: AI Summary & Review -->
+        <div class="step-content" id="step4">
+          <!-- AI Summary -->
+          <div class="section-card">
+            <div class="section-header">
+              <h3>🤖 Ringkasan AI</h3>
+              <button class="btn-ai" id="generateSummaryBtn" onclick="generateAISummary()">✨ Generate</button>
+            </div>
+            <p class="text-muted mb-md" style="font-size:0.85rem;">AI akan membuat ringkasan profesional berdasarkan data CV Anda.</p>
+            <textarea id="aiSummary" class="input-modern" rows="5" placeholder="Ringkasan profesional akan muncul di sini..."></textarea>
+          </div>
+
+          <!-- CV Review -->
+          <div class="section-card">
+            <div class="section-header">
+              <h3>📊 Review CV</h3>
+              <button class="btn-ai" id="reviewCVBtn" onclick="reviewCV()">✨ Review</button>
+            </div>
+            <p class="text-muted mb-md" style="font-size:0.85rem;">AI akan mereview dan memberikan skor serta saran perbaikan untuk CV Anda.</p>
+            <div id="reviewResults"></div>
+          </div>
+
+          <div class="step-nav">
+            <button class="btn-ghost" onclick="prevStep()">← Sebelumnya</button>
+            <button class="btn-accent" onclick="saveCV(); window.location.href='preview.html?id='+cvId;">👁 Preview CV</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Live Preview -->
+      <div class="editor-preview">
+        <h3 style="font-size:1rem;margin-bottom:var(--space-md);color:var(--text-secondary);">Live Preview</h3>
+        <div class="template-selector">
+          <button class="template-option active" data-template="modern">Modern</button>
+          <button class="template-option" data-template="classic">Classic</button>
+          <button class="template-option" data-template="minimal">Minimal</button>
+          <button class="template-option" data-template="elegant">Elegant</button>
+          <button class="template-option" data-template="creative">Creative</button>
+          <button class="template-option" data-template="professional">Professional</button>
+        </div>
+        <div id="livePreviewContainer">
+          <div style="padding:40px;text-align:center;color:#999;">Mulai isi data untuk melihat preview</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Chat Panel -->
+  <div class="ai-panel" id="aiPanel">
+    <div class="ai-panel-header">
+      <h3>🤖 AI Assistant</h3>
+      <button class="modal-close" onclick="toggleAIPanel()">×</button>
+    </div>
+    <div class="ai-chat-messages" id="aiChatMessages">
+      <div class="ai-message assistant">Halo! Saya asisten AI Anda. Tanyakan apa saja tentang pembuatan CV. 😊</div>
+    </div>
+    <div class="ai-chat-input-area">
+      <input type="text" id="aiChatInput" placeholder="Ketik pesan..." autocomplete="off">
+      <button onclick="sendAIChat()">➤</button>
+    </div>
+  </div>
+
+  <!-- AI Chat Toggle -->
+  <button class="ai-toggle-btn" onclick="toggleAIPanel()">🤖 AI Chat</button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/deepseek.js"></script>
+  <script src="js/editor.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+/* ============================================================
+   CV Maker AI — Auth Pages (Login & Register)
+   ============================================================ */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  padding-top: 100px;
+  position: relative;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  animation: scaleIn 0.5s ease forwards;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.auth-header .brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  margin-bottom: var(--space-lg);
+}
+
+.auth-header .brand-link .brand-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.auth-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+  color: var(--text-primary);
+}
+
+.auth-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.auth-form {
+  margin-top: var(--space-lg);
+}
+
+.auth-form .form-group {
+  position: relative;
+}
+
+.auth-form .password-wrapper {
+  position: relative;
+}
+
+.auth-form .password-toggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: color var(--transition-fast);
+}
+
+.auth-form .password-toggle:hover {
+  color: var(--text-primary);
+}
+
+.auth-form .btn-gradient {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  margin-top: var(--space-sm);
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--surface-border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.auth-footer a {
+  color: var(--primary-light);
+  font-weight: 600;
+}
+
+.auth-footer a:hover {
+  color: var(--accent);
+}
+
+/* Password Strength Meter */
+.password-meter {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.password-meter .meter-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--surface-light);
+  transition: background var(--transition-base);
+}
+
+.password-feedback {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  min-height: 1.2em;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+  }
+
+  .auth-title {
+    font-size: 1.5rem;
+  }
+}

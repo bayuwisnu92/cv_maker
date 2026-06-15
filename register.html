@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Buat akun CV Maker AI untuk mulai membuat CV profesional">
+  <title>Daftar — CV Maker AI</title>
+  <link rel="icon" href="img/cv.png" type="image/png">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <div class="bg-mesh"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar-modern" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <span class="brand-icon">📝</span> CV Maker AI
+      </a>
+      <ul class="navbar-links" id="navLinks">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="about.html">Tentang</a></li>
+        <li id="navDashboard" class="hidden"><a href="dashboard.html">Dashboard</a></li>
+        <li id="navEditor" class="hidden"><a href="editor.html">Buat CV</a></li>
+      </ul>
+      <div class="navbar-actions" id="navActions">
+        <div id="guestActions">
+          <a href="login.html" class="btn-ghost btn-sm">Masuk</a>
+          <a href="register.html" class="btn-gradient btn-sm">Daftar</a>
+        </div>
+        <div id="authActions" class="hidden">
+          <div class="navbar-user">
+            <span class="navbar-username" id="navUsername"></span>
+            <button class="btn-ghost btn-sm" onclick="handleLogout()">Keluar</button>
+          </div>
+        </div>
+      </div>
+      <button class="navbar-toggle" id="navToggle" onclick="toggleMobileMenu()">☰</button>
+    </div>
+  </nav>
+
+  <!-- Register Form -->
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-header">
+        <a href="index.html" class="brand-link">
+          <span class="brand-icon">📝</span> CV Maker AI
+        </a>
+        <h1 class="auth-title">Buat Akun Baru</h1>
+        <p class="auth-subtitle">Mulai buat CV profesional dengan AI</p>
+      </div>
+
+      <form class="auth-form" id="registerForm">
+        <div class="form-group">
+          <label for="registerName">Nama Lengkap</label>
+          <input type="text" id="registerName" class="input-modern" placeholder="Masukkan nama lengkap" required autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="registerEmail">Email</label>
+          <input type="email" id="registerEmail" class="input-modern" placeholder="nama@email.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="registerPassword">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="registerPassword" class="input-modern" placeholder="Minimal 8 karakter" required autocomplete="new-password">
+            <button type="button" class="password-toggle" id="toggleRegPassword">👁</button>
+          </div>
+          <div class="password-meter" id="passwordMeter" data-score="0">
+            <div class="meter-bar"></div>
+            <div class="meter-bar"></div>
+            <div class="meter-bar"></div>
+            <div class="meter-bar"></div>
+            <div class="meter-bar"></div>
+          </div>
+          <div class="password-feedback" id="passwordFeedback"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="registerConfirmPassword">Konfirmasi Password</label>
+          <input type="password" id="registerConfirmPassword" class="input-modern" placeholder="Ulangi password" required autocomplete="new-password">
+        </div>
+
+        <button type="submit" class="btn-gradient w-full">Daftar</button>
+      </form>
+
+      <div class="auth-footer">
+        Sudah punya akun? <a href="login.html">Masuk</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

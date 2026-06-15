@@ -1,98 +1,203 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buat CV Online</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        .hero {
-            background: url('img/hal1.jpg') no-repeat center center;
-            background-size: cover;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .features {
-            padding: 60px 0;
-        }
-        .feature-item {
-            margin-bottom: 30px;
-        }
-        .cta {
-            background: #343a40;
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-        }
-        .cta .btn {
-            font-size: 1.5rem;
-            padding: 15px 30px;
-        }
-        .bt{
-            border: 1px solid grey;
-
-        }
-        .bt:hover{
-            border: 1px solid black;
-            color: black;
-            opacity: 0.8;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Buat CV profesional dengan bantuan AI. Desain modern, multiple template, dan tersimpan di cloud.">
+  <title>CV Maker AI — Buat CV Profesional dengan AI</title>
+  <link rel="icon" href="img/cv.png" type="image/png">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <div id="navbar-container"></div>
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Selamat Datang di Buat CV Online</h1>
-        <p>Buat CV profesional Anda dengan mudah dan cepat</p>
-        <a href="make.html" class="btn btn-lg bt"><i class="bi bi-dpad"></i> Mulai Sekarang</a>
-    </div>
+  <div class="bg-mesh"></div>
 
-    <!-- Features Section -->
-    <div class="container features">
-        <div class="row text-center">
-            <div class="col-md-4 feature-item">
-                <i class="fas fa-user-tie fa-3x mb-3"></i>
-                <h3>Desain Profesional</h3>
-                <p>Pilih dari berbagai template CV yang menarik dan profesional.</p>
-            </div>
-            <div class="col-md-4 feature-item">
-                <i class="fas fa-file-alt fa-3x mb-3"></i>
-                <h3>Mudah Digunakan</h3>
-                <p>Antarmuka yang ramah pengguna untuk memudahkan Anda dalam membuat CV.</p>
-            </div>
-            <div class="col-md-4 feature-item">
-                <i class="fas fa-share-alt fa-3x mb-3"></i>
-                <h3>Bagikan dengan Mudah</h3>
-                <p>Bagikan CV Anda langsung melalui email atau media sosial.</p>
-            </div>
+  <!-- Navbar -->
+  <nav class="navbar-modern" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <span class="brand-icon">📝</span> CV Maker AI
+      </a>
+      <ul class="navbar-links" id="navLinks">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="about.html">Tentang</a></li>
+        <li id="navDashboard" class="hidden"><a href="dashboard.html">Dashboard</a></li>
+        <li id="navEditor" class="hidden"><a href="editor.html">Buat CV</a></li>
+      </ul>
+      <div class="navbar-actions" id="navActions">
+        <div id="guestActions">
+          <a href="login.html" class="btn-ghost btn-sm">Masuk</a>
+          <a href="register.html" class="btn-gradient btn-sm">Daftar Gratis</a>
         </div>
+        <div id="authActions" class="hidden">
+          <div class="navbar-user">
+            <span class="navbar-username" id="navUsername"></span>
+            <button class="btn-ghost btn-sm" onclick="handleLogout()">Keluar</button>
+          </div>
+        </div>
+      </div>
+      <button class="navbar-toggle" id="navToggle" onclick="toggleMobileMenu()">☰</button>
     </div>
+  </nav>
 
-    <!-- Call to Action Section -->
-    <div class="cta">
-        <h2>Siap untuk membuat CV Anda?</h2>
-        <a href="make.html" class="btn btn-light"><i class="bi bi-dpad"></i> Buat CV Sekarang</a>
+  <!-- Hero Section -->
+  <section class="landing-hero">
+    <div class="floating-elements">
+      <div class="floating-card">✨ AI Summary</div>
+      <div class="floating-card">📄 3 Template</div>
+      <div class="floating-card">☁️ Cloud Save</div>
+      <div class="floating-card">🎯 Smart Skills</div>
     </div>
+    <div class="hero-content">
+      <div class="hero-badge">✨ Powered by DeepSeek AI</div>
+      <h1 class="hero-title">
+        Buat CV <span class="text-gradient">Profesional</span> dengan Kekuatan <span class="text-gradient">AI</span>
+      </h1>
+      <p class="hero-subtitle">
+        Buat curriculum vitae yang mengesankan dalam hitungan menit. Didukung AI untuk ringkasan otomatis, saran skill, dan review profesional.
+      </p>
+      <div class="hero-actions">
+        <a href="register.html" class="btn-gradient btn-lg">🚀 Mulai Sekarang</a>
+        <a href="#features" class="btn-ghost btn-lg">Pelajari Lebih</a>
+      </div>
+    </div>
+  </section>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        fetch('navbar/nav.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('navbar-container').innerHTML = data;
-                });
-      </script>
-      
-        
-      </body>
-      </html>
+  <!-- Features Section -->
+  <section class="features-section container-app" id="features">
+    <div class="section-title reveal">
+      <h2>Fitur <span class="text-gradient">Unggulan</span></h2>
+      <p>Semua yang Anda butuhkan untuk membuat CV yang sempurna</p>
+    </div>
+    <div class="features-grid">
+      <div class="glass-card feature-card reveal">
+        <div class="feature-icon purple">🤖</div>
+        <h3>AI Summary Generator</h3>
+        <p>Buat ringkasan profesional secara otomatis berdasarkan data CV Anda menggunakan DeepSeek AI.</p>
+      </div>
+      <div class="glass-card feature-card reveal">
+        <div class="feature-icon teal">🎯</div>
+        <h3>Smart Skill Suggestions</h3>
+        <p>Dapatkan saran skill yang relevan berdasarkan posisi dan pengalaman kerja Anda.</p>
+      </div>
+      <div class="glass-card feature-card reveal">
+        <div class="feature-icon blue">🎨</div>
+        <h3>Multiple Template</h3>
+        <p>Pilih dari 3 template premium: Modern, Classic, dan Minimal. Ganti kapan saja!</p>
+      </div>
+      <div class="glass-card feature-card reveal">
+        <div class="feature-icon orange">☁️</div>
+        <h3>Cloud Storage</h3>
+        <p>Data CV tersimpan aman di cloud. Akses dan edit dari mana saja, kapan saja.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Showcase -->
+  <section class="ai-showcase container-app">
+    <div class="ai-showcase-grid">
+      <div class="ai-showcase-text reveal">
+        <h2>Asisten AI yang <span class="text-gradient">Memahami</span> Kebutuhan Anda</h2>
+        <p>CV Maker AI menggunakan DeepSeek AI untuk membantu Anda membuat CV terbaik. Dari menulis ringkasan profesional hingga mereview keseluruhan CV.</p>
+        <ul class="ai-feature-list">
+          <li><span class="check-icon">✓</span> Generate ringkasan profesional otomatis</li>
+          <li><span class="check-icon">✓</span> Saran skill berdasarkan posisi</li>
+          <li><span class="check-icon">✓</span> Review & skor CV dengan AI</li>
+          <li><span class="check-icon">✓</span> Chat assistant untuk bantuan menulis</li>
+          <li><span class="check-icon">✓</span> Perbaiki teks menjadi lebih profesional</li>
+        </ul>
+      </div>
+      <div class="glass-card ai-demo-card reveal">
+        <div class="ai-demo-header">🤖 AI Assistant</div>
+        <div class="ai-demo-messages">
+          <div class="demo-msg user">Buatkan ringkasan profesional untuk CV saya</div>
+          <div class="demo-msg ai">Profesional berpengalaman di bidang teknologi informasi dengan keahlian dalam pengembangan web dan mobile. Memiliki rekam jejak yang solid dalam memimpin tim dan menyelesaikan proyek tepat waktu. Berkomitmen untuk terus mengembangkan keahlian dan memberikan solusi inovatif.</div>
+          <div class="demo-msg user">Sarankan skill untuk Frontend Developer</div>
+          <div class="demo-msg ai">React.js, TypeScript, Tailwind CSS, Git, Figma, REST API, Performance Optimization, Responsive Design</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section container-app">
+    <div class="stats-grid reveal">
+      <div class="stat-item glass-card">
+        <div class="stat-value text-gradient">∞</div>
+        <div class="stat-desc">CV Tak Terbatas</div>
+      </div>
+      <div class="stat-item glass-card">
+        <div class="stat-value text-gradient">3</div>
+        <div class="stat-desc">Template Premium</div>
+      </div>
+      <div class="stat-item glass-card">
+        <div class="stat-value text-gradient">AI</div>
+        <div class="stat-desc">Powered by DeepSeek</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section container-app">
+    <div class="cta-card reveal">
+      <h2>Siap Membuat CV yang Mengesankan?</h2>
+      <p>Bergabung sekarang dan buat CV profesional Anda dalam hitungan menit.</p>
+      <a href="register.html" class="btn-cta">🚀 Mulai Sekarang — Gratis!</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer container-app">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">📝 CV Maker AI</div>
+        <p class="footer-desc">Platform pembuatan CV profesional dengan teknologi AI terdepan. Buat CV yang mengesankan dalam hitungan menit.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="about.html">Tentang</a></li>
+          <li><a href="login.html">Masuk</a></li>
+          <li><a href="register.html">Daftar</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Fitur</h4>
+        <ul>
+          <li><a href="register.html">AI Summary</a></li>
+          <li><a href="register.html">Saran Skill</a></li>
+          <li><a href="register.html">Template Premium</a></li>
+          <li><a href="register.html">Cloud Storage</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 CV Maker AI — Dibuat oleh Bayu Wisnu Aji</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/supabase.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      updateNavbar();
+      initNavbarScroll();
+
+      // Scroll reveal animation
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

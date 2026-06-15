@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard CV Maker AI — Kelola semua CV Anda">
+  <title>Dashboard — CV Maker AI</title>
+  <link rel="icon" href="img/cv.png" type="image/png">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <div class="bg-mesh"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar-modern" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <span class="brand-icon">📝</span> CV Maker AI
+      </a>
+      <ul class="navbar-links" id="navLinks">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="about.html">Tentang</a></li>
+        <li id="navDashboard" class="hidden"><a href="dashboard.html">Dashboard</a></li>
+        <li id="navEditor" class="hidden"><a href="editor.html">Buat CV</a></li>
+      </ul>
+      <div class="navbar-actions" id="navActions">
+        <div id="guestActions">
+          <a href="login.html" class="btn-ghost btn-sm">Masuk</a>
+          <a href="register.html" class="btn-gradient btn-sm">Daftar</a>
+        </div>
+        <div id="authActions" class="hidden">
+          <div class="navbar-user">
+            <span class="navbar-username" id="navUsername"></span>
+            <button class="btn-ghost btn-sm" onclick="handleLogout()">Keluar</button>
+          </div>
+        </div>
+      </div>
+      <button class="navbar-toggle" id="navToggle" onclick="toggleMobileMenu()">☰</button>
+    </div>
+  </nav>
+
+  <!-- Dashboard -->
+  <div class="dashboard container-app">
+    <!-- Header -->
+    <div class="dashboard-header">
+      <h1>Selamat datang, <span id="userName">User</span> 👋</h1>
+      <p>Kelola dan buat CV profesional Anda di sini</p>
+
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <div class="stat-icon purple">📄</div>
+          <div class="stat-info">
+            <div class="stat-number" id="totalCVs">0</div>
+            <div class="stat-label">Total CV</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon teal">🕒</div>
+          <div class="stat-info">
+            <div class="stat-number" id="lastEdited">-</div>
+            <div class="stat-label">Terakhir Diedit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="dashboard-actions">
+      <h2>CV Saya</h2>
+      <button class="btn-gradient" onclick="openNewCVModal()">+ Buat CV Baru</button>
+    </div>
+
+    <!-- CV Grid -->
+    <div class="cv-grid" id="cvGrid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+
+  <!-- New CV Modal -->
+  <div class="modal-overlay" id="newCvModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Buat CV Baru</h3>
+        <button class="modal-close" onclick="closeNewCVModal()">×</button>
+      </div>
+      <div class="form-group">
+        <label for="newCvTitle">Judul CV</label>
+        <input type="text" id="newCvTitle" class="input-modern" placeholder="Contoh: CV Lamaran Google" maxlength="100">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-ghost" onclick="closeNewCVModal()">Batal</button>
+        <button class="btn-gradient" id="createCvBtn" onclick="createNewCV()">Buat CV</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

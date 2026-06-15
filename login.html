@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Masuk ke akun CV Maker AI Anda">
+  <title>Masuk — CV Maker AI</title>
+  <link rel="icon" href="img/cv.png" type="image/png">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <div class="bg-mesh"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar-modern" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <span class="brand-icon">📝</span> CV Maker AI
+      </a>
+      <ul class="navbar-links" id="navLinks">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="about.html">Tentang</a></li>
+        <li id="navDashboard" class="hidden"><a href="dashboard.html">Dashboard</a></li>
+        <li id="navEditor" class="hidden"><a href="editor.html">Buat CV</a></li>
+      </ul>
+      <div class="navbar-actions" id="navActions">
+        <div id="guestActions">
+          <a href="login.html" class="btn-ghost btn-sm">Masuk</a>
+          <a href="register.html" class="btn-gradient btn-sm">Daftar</a>
+        </div>
+        <div id="authActions" class="hidden">
+          <div class="navbar-user">
+            <span class="navbar-username" id="navUsername"></span>
+            <button class="btn-ghost btn-sm" onclick="handleLogout()">Keluar</button>
+          </div>
+        </div>
+      </div>
+      <button class="navbar-toggle" id="navToggle" onclick="toggleMobileMenu()">☰</button>
+    </div>
+  </nav>
+
+  <!-- Login Form -->
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-header">
+        <a href="index.html" class="brand-link">
+          <span class="brand-icon">📝</span> CV Maker AI
+        </a>
+        <h1 class="auth-title">Selamat Datang Kembali</h1>
+        <p class="auth-subtitle">Masuk untuk mengelola CV Anda</p>
+      </div>
+
+      <form class="auth-form" id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" class="input-modern" placeholder="nama@email.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="loginPassword" class="input-modern" placeholder="Masukkan password" required autocomplete="current-password">
+            <button type="button" class="password-toggle" id="togglePassword">👁</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-gradient w-full">Masuk</button>
+      </form>
+
+      <div class="auth-footer">
+        Belum punya akun? <a href="register.html">Daftar sekarang</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

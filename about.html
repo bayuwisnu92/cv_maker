@@ -1,109 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang Kami - Buat CV Online</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    
-    <style>
-        .about-header {
-            background: url('img/hal1.jpg') no-repeat center center;
-            background-size: cover;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .about-section {
-            padding: 60px 0;
-        }
-        .about-section h2 {
-            margin-bottom: 20px;
-        }
-        .about-section p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        .team-section {
-            background-color: #f8f9fa;
-            padding: 60px 0;
-        }
-        .team-member {
-            margin-bottom: 30px;
-        }
-        .team-member img {
-            border-radius: 50%;
-            margin-bottom: 20px;
-        }
-        .team-member h4 {
-            margin-bottom: 10px;
-        }
-        .vision-section {
-            padding: 60px 0;
-            text-align: center;
-        }
-        .vision-section h2 {
-            margin-bottom: 20px;
-        }
-        .vision-section p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tentang CV Maker AI — Platform pembuatan CV profesional dengan AI">
+  <title>Tentang — CV Maker AI</title>
+  <link rel="icon" href="img/cv.png" type="image/png">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <div id="navbar-container"></div>
-    <!-- About Header Section -->
-    <div class="about-header">
-        <h1>Tentang Kami</h1>
-    </div>
+  <div class="bg-mesh"></div>
 
-    <!-- About Section -->
-    <div class="container about-section">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Tentang Buat CV Online</h2>
-                <p>Buat CV Online adalah layanan yang dirancang untuk membantu Anda membuat CV profesional dengan mudah dan cepat. Dengan berbagai template yang menarik dan antarmuka yang ramah pengguna, kami memastikan Anda dapat membuat CV yang sesuai dengan kebutuhan Anda tanpa kesulitan.</p>
-                <p>Tujuan kami adalah memberikan alat yang efektif dan efisien bagi siapa saja yang ingin meningkatkan peluang mereka dalam mencari pekerjaan dengan menyediakan CV yang profesional dan menarik.</p>
-            </div>
+  <!-- Navbar -->
+  <nav class="navbar-modern" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <span class="brand-icon">📝</span> CV Maker AI
+      </a>
+      <ul class="navbar-links" id="navLinks">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="about.html">Tentang</a></li>
+        <li id="navDashboard" class="hidden"><a href="dashboard.html">Dashboard</a></li>
+        <li id="navEditor" class="hidden"><a href="editor.html">Buat CV</a></li>
+      </ul>
+      <div class="navbar-actions" id="navActions">
+        <div id="guestActions">
+          <a href="login.html" class="btn-ghost btn-sm">Masuk</a>
+          <a href="register.html" class="btn-gradient btn-sm">Daftar</a>
         </div>
-    </div>
-
-    <!-- Team Section -->
-    <div class="container team-section">
-        <div class="row text-center">
-            <div class="col-md-12">
-                <h2>Tim Kami</h2>
-            </div>
-            <div class="col-md-4 team-member">
-                <img src="img/Gambar WhatsApp 2024-05-17 pukul 13.07.57_0f393432.jpg" alt="Tim Member" class="img-fluid">
-                <h4>Bayu wisnu aji</h4>
-                <p>Creator website</p>
-            </div>
-            
+        <div id="authActions" class="hidden">
+          <div class="navbar-user">
+            <span class="navbar-username" id="navUsername"></span>
+            <button class="btn-ghost btn-sm" onclick="handleLogout()">Keluar</button>
+          </div>
         </div>
+      </div>
+      <button class="navbar-toggle" id="navToggle" onclick="toggleMobileMenu()">☰</button>
+    </div>
+  </nav>
+
+  <!-- About Hero -->
+  <section style="padding-top: 140px; padding-bottom: 60px; text-align: center;">
+    <div class="container-app">
+      <div class="hero-badge" style="margin-bottom: 20px;">ℹ️ Tentang Kami</div>
+      <h1 class="hero-title" style="font-size: 2.8rem;">
+        Tentang <span class="text-gradient">CV Maker AI</span>
+      </h1>
+      <p class="hero-subtitle" style="max-width: 600px; margin: 0 auto;">
+        Platform pembuatan CV profesional yang didukung teknologi kecerdasan buatan terdepan
+      </p>
+    </div>
+  </section>
+
+  <!-- About Content -->
+  <section class="container-app" style="padding-bottom: 80px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 64px;">
+      <div class="glass-card reveal">
+        <h3 style="margin-bottom: 16px;">🎯 Apa itu CV Maker AI?</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          CV Maker AI adalah platform pembuatan CV online yang mengintegrasikan teknologi DeepSeek AI untuk membantu Anda membuat CV profesional dengan cepat dan mudah. Dengan fitur AI Summary, Smart Skill Suggestions, dan CV Review otomatis, Anda dapat membuat CV yang mengesankan dalam hitungan menit.
+        </p>
+      </div>
+      <div class="glass-card reveal">
+        <h3 style="margin-bottom: 16px;">🛠️ Teknologi</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          Dibangun dengan teknologi modern: Supabase untuk autentikasi dan database cloud, DeepSeek AI untuk fitur kecerdasan buatan, dan desain glassmorphism yang premium. Semua data tersimpan aman di cloud dengan Row Level Security.
+        </p>
+      </div>
     </div>
 
-    <!-- Vision Section -->
-    <div class="container vision-section">
-        <h2>Visi dan Misi Kami</h2>
-        <p>Visi kami adalah menjadi platform terdepan dalam pembuatan CV online yang membantu setiap individu mencapai kesuksesan profesional. Misi kami adalah menyediakan alat yang mudah digunakan dan aksesibel untuk membuat CV yang profesional dan menarik, serta mendukung pengguna kami dalam setiap langkah karir mereka.</p>
+    <!-- Team -->
+    <div style="text-align: center; margin-bottom: 64px;" class="reveal">
+      <h2 style="font-size: 1.8rem; margin-bottom: 32px;">Tim <span class="text-gradient">Kami</span></h2>
+      <div class="glass-card" style="max-width: 400px; margin: 0 auto; text-align: center; padding: 40px;">
+        <div style="width: 100px; height: 100px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 20px;">👨‍💻</div>
+        <h3 style="margin-bottom: 4px;">Bayu Wisnu Aji</h3>
+        <p style="color: var(--accent); font-size: 0.9rem; margin-bottom: 12px;">Creator & Developer</p>
+        <p style="color: var(--text-muted); font-size: 0.88rem;">Membangun CV Maker AI dengan passion untuk membantu orang-orang membuat CV profesional yang menonjol.</p>
+      </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script>
-        fetch('navbar/nav.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('navbar-container').innerHTML = data;
-                });
-      </script>
+    <!-- Vision -->
+    <div class="glass-card reveal" style="text-align: center; max-width: 700px; margin: 0 auto;">
+      <h3 style="margin-bottom: 16px;">🌟 Visi & Misi</h3>
+      <p style="color: var(--text-secondary); line-height: 1.8;">
+        Visi kami adalah menjadi platform terdepan dalam pembuatan CV online yang membantu setiap individu mencapai kesuksesan profesional. Misi kami adalah menyediakan alat yang mudah digunakan, didukung AI, dan aksesibel untuk membuat CV yang profesional dan menarik.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer container-app">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">📝 CV Maker AI</div>
+        <p class="footer-desc">Platform pembuatan CV profesional dengan teknologi AI terdepan.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="about.html">Tentang</a></li>
+          <li><a href="login.html">Masuk</a></li>
+          <li><a href="register.html">Daftar</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Fitur</h4>
+        <ul>
+          <li><a href="register.html">AI Summary</a></li>
+          <li><a href="register.html">Template Premium</a></li>
+          <li><a href="register.html">Cloud Storage</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 CV Maker AI — Dibuat oleh Bayu Wisnu Aji</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/supabase.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      updateNavbar();
+      initNavbarScroll();
+
+      // Scroll reveal
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>
