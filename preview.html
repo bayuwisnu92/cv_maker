@@ -47,13 +47,24 @@
         <a href="#" id="editLink">← Kembali ke Editor</a>
       </div>
       <div class="toolbar-templates">
-        <button class="tpl-btn active" data-template="modern">Modern</button>
-        <button class="tpl-btn" data-template="classic">Classic</button>
-        <button class="tpl-btn" data-template="minimal">Minimal</button>
-        <button class="tpl-btn" data-template="elegant">Elegant</button>
-        <button class="tpl-btn" data-template="creative">Creative</button>
-        <button class="tpl-btn" data-template="professional">Professional</button>
-        <button class="tpl-btn" data-template="aesthetic">Aesthetic</button>
+        <div class="tpl-btn-group">
+          <button class="tpl-btn active" data-template="modern">Modern</button>
+          <button class="tpl-btn" data-template="classic">Classic</button>
+          <button class="tpl-btn" data-template="minimal">Minimal</button>
+          <button class="tpl-btn" data-template="elegant">Elegant</button>
+          <button class="tpl-btn" data-template="creative">Creative</button>
+          <button class="tpl-btn" data-template="professional">Professional</button>
+          <button class="tpl-btn" data-template="aesthetic">Aesthetic</button>
+        </div>
+        <select class="tpl-select" id="templateSelectMobile">
+          <option value="modern">Modern</option>
+          <option value="classic">Classic</option>
+          <option value="minimal">Minimal</option>
+          <option value="elegant">Elegant</option>
+          <option value="creative">Creative</option>
+          <option value="professional">Professional</option>
+          <option value="aesthetic">Aesthetic</option>
+        </select>
       </div>
       <div class="toolbar-right">
         <button class="btn-ai" id="aiReviewBtn" onclick="aiReviewCV()">✨ AI Review</button>

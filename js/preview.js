@@ -375,12 +375,26 @@ function esc(str) {
 
 // ── Template Switcher ──
 function setupTemplateButtons() {
+  const selectMobile = document.getElementById('templateSelectMobile');
+  if (selectMobile) {
+    selectMobile.value = currentTemplate;
+    selectMobile.addEventListener('change', (e) => {
+      currentTemplate = e.target.value;
+      document.querySelectorAll('.tpl-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.template === currentTemplate);
+      });
+      supabaseDB.updateCV(cvId, { template: currentTemplate });
+      renderCV();
+    });
+  }
+
   document.querySelectorAll('.tpl-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.template === currentTemplate);
     btn.addEventListener('click', () => {
       currentTemplate = btn.dataset.template;
       document.querySelectorAll('.tpl-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      if (selectMobile) selectMobile.value = currentTemplate;
 
       // Save template preference
       supabaseDB.updateCV(cvId, { template: currentTemplate });

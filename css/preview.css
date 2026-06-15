@@ -43,6 +43,16 @@
   gap: var(--space-sm);
 }
 
+.tpl-btn-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tpl-select {
+  display: none;
+}
+
 .toolbar-templates .tpl-btn {
   padding: 8px 16px;
   background: var(--surface);
@@ -1250,6 +1260,25 @@
     flex-direction: column;
     align-items: flex-start;
     top: 56px;
+  }
+
+  .tpl-btn-group {
+    display: none;
+  }
+
+  .tpl-select {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: var(--surface);
+    border: 1px solid var(--surface-border);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
   }
 
   .ai-review-panel {
