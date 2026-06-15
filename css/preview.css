@@ -1252,18 +1252,6 @@
     top: 56px;
   }
 
-  .template-modern {
-    grid-template-columns: 1fr;
-  }
-
-  .template-classic {
-    padding: 24px;
-  }
-
-  .template-minimal {
-    padding: 24px;
-  }
-
   .ai-review-panel {
     width: 100%;
     right: -100%;

@@ -434,7 +434,8 @@ const updateLivePreview = debounce(function () {
   const data = collectFormData();
   const template = data.template || 'modern';
 
-  container.innerHTML = renderCVTemplate(data, template);
+  container.innerHTML = `<div class="cv-document" id="cvDocument" style="width: 800px; min-height: 1131px; transform-origin: top center; margin: 0 auto;">${renderCVTemplate(data, template)}</div>`;
+  adjustPreviewScale();
 }, 300);
 
 function renderCVTemplate(data, template) {
@@ -1020,3 +1021,32 @@ function setupEventListeners() {
 
 // Make renderCVTemplate globally available for preview page
 window.renderCVTemplate = renderCVTemplate;
+
+function adjustPreviewScale() {
+  const container = document.getElementById('livePreviewContainer');
+  const doc = document.getElementById('cvDocument');
+  if (!container || !doc) return;
+
+  // Reset styles to measure original dimensions
+  doc.style.transform = 'none';
+  container.style.height = 'auto';
+
+  const containerWidth = container.clientWidth;
+  if (containerWidth < 800) {
+    const scale = containerWidth / 800;
+    doc.style.transform = `scale(${scale})`;
+    
+    // Set height of the parent container to match the visually scaled element height
+    const scaledHeight = doc.scrollHeight * scale;
+    container.style.height = `${scaledHeight}px`;
+    container.style.overflow = 'hidden';
+  } else {
+    container.style.height = 'auto';
+    container.style.overflow = 'visible';
+  }
+}
+
+window.addEventListener('resize', adjustPreviewScale);
+// Also trigger scale adjustment once DOM and fonts are fully loaded
+window.addEventListener('load', adjustPreviewScale);
+document.fonts.ready.then(adjustPreviewScale);

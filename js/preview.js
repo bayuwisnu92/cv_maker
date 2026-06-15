@@ -52,6 +52,7 @@ function renderCV() {
   } else {
     container.innerHTML = renderPreviewTemplate(cvData, currentTemplate);
   }
+  adjustPreviewScale();
 }
 
 // Fallback render function (duplicates logic from editor.js)
@@ -500,3 +501,35 @@ async function saveAsPDF() {
 
   hideLoading(loading);
 }
+
+function adjustPreviewScale() {
+  const container = document.querySelector('.preview-container');
+  const doc = document.getElementById('cvDocument');
+  if (!container || !doc) return;
+
+  // Reset styles to measure original dimensions
+  doc.style.transform = 'none';
+  doc.style.width = '800px';
+  doc.style.minWidth = '800px';
+  doc.style.maxWidth = '800px';
+  container.style.height = 'auto';
+
+  const containerWidth = container.clientWidth;
+  if (containerWidth < 800) {
+    const scale = containerWidth / 800;
+    doc.style.transform = `scale(${scale})`;
+    doc.style.transformOrigin = 'top center';
+    
+    // Set height of the parent container to match the visually scaled element height
+    const scaledHeight = doc.scrollHeight * scale;
+    container.style.height = `${scaledHeight}px`;
+    container.style.overflow = 'hidden';
+  } else {
+    container.style.height = 'auto';
+    container.style.overflow = 'visible';
+  }
+}
+
+window.addEventListener('resize', adjustPreviewScale);
+window.addEventListener('load', adjustPreviewScale);
+document.fonts.ready.then(adjustPreviewScale);
