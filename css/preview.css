@@ -1229,6 +1229,63 @@
   color: #555;
 }
 
+/* Skill Bar Chart (Diagram Batang) */
+.cv-skill-bar-wrapper {
+  margin-bottom: 12px;
+  width: 100%;
+}
+.cv-skill-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.cv-skill-bar-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: inherit;
+}
+.cv-skill-bar-val {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: inherit;
+  opacity: 0.8;
+}
+.cv-skill-bar-track {
+  background: rgba(0, 0, 0, 0.08);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+}
+.cv-sidebar .cv-skill-bar-track,
+.cv-prof-sidebar .cv-skill-bar-track {
+  background: rgba(255, 255, 255, 0.15);
+}
+.cv-skill-bar-fill {
+  background: var(--primary, #6c63ff);
+  height: 100%;
+  border-radius: 4px;
+}
+.template-modern .cv-skill-bar-fill {
+  background: #6c63ff;
+}
+.template-classic .cv-skill-bar-fill {
+  background: #1f2937;
+}
+.template-minimal .cv-skill-bar-fill {
+  background: #111827;
+}
+.template-elegant .cv-skill-bar-fill {
+  background: #4b5563;
+}
+.template-creative .cv-skill-bar-fill {
+  background: #3b82f6;
+}
+.template-professional .cv-skill-bar-fill {
+  background: #c5ce26;
+}
+
 /* Print */
 @media print {
   .navbar-modern,

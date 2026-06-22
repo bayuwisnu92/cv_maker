@@ -55,7 +55,6 @@ function renderCV() {
   adjustPreviewScale();
 }
 
-// Fallback render function (duplicates logic from editor.js)
 function renderPreviewTemplate(data, template) {
   const pi = data.personal_info || {};
   const sm = data.social_media || {};
@@ -64,53 +63,165 @@ function renderPreviewTemplate(data, template) {
     ? `<img class="cv-photo" src="${photoSrc}" alt="Foto">`
     : '';
 
+  const renderMetaHtml = (isDark = false) => {
+    if (!pi.religion && !pi.height && !pi.weight) return '';
+    const borderStyle = isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.08)';
+    const textStyle = isDark ? 'color:rgba(255,255,255,0.85);' : 'color:#555;';
+    return `
+      <div class="cv-meta-section" style="border-top:1px solid ${borderStyle}; padding-top:8px; margin-top:8px; font-size:0.8rem; line-height:1.5; ${textStyle}">
+        ${pi.religion ? `<div>Agama: ${esc(pi.religion)}</div>` : ''}
+        ${pi.height ? `<div>Tinggi: ${esc(pi.height)} cm</div>` : ''}
+        ${pi.weight ? `<div>Berat: ${esc(pi.weight)} kg</div>` : ''}
+      </div>
+    `;
+  };
+
+  const renderSkillBars = (skills) => {
+    if (!skills || !skills.length) return '';
+    return skills.map(s => {
+      let lvl = parseInt(s.level);
+      if (isNaN(lvl)) lvl = 8;
+      if (lvl < 1) lvl = 1;
+      if (lvl > 10) lvl = 10;
+      const pct = lvl * 10;
+      return `
+        <div class="cv-skill-bar-wrapper">
+          <div class="cv-skill-bar-header">
+            <span class="cv-skill-bar-name">${esc(s.name)}</span>
+            <span class="cv-skill-bar-val">${lvl}/10</span>
+          </div>
+          <div class="cv-skill-bar-track">
+            <div class="cv-skill-bar-fill" style="width: ${pct}%"></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  };
+
   if (template === 'modern') {
     return `
       <div class="template-modern">
         <div class="cv-sidebar">
           ${photoHtml}
-          <div class="cv-section"><div class="cv-section-title">Kontak</div>
+          <div class="cv-section">
+            <div class="cv-section-title">Kontak</div>
             ${pi.email ? `<div class="cv-contact-item"><span class="contact-icon">✉</span> ${esc(pi.email)}</div>` : ''}
             ${pi.phone ? `<div class="cv-contact-item"><span class="contact-icon">📞</span> ${esc(pi.phone)}</div>` : ''}
             ${pi.address ? `<div class="cv-contact-item"><span class="contact-icon">📍</span> ${esc(pi.address)}</div>` : ''}
+            ${renderMetaHtml(true)}
           </div>
-          ${data.skills?.length ? `<div class="cv-section"><div class="cv-section-title">Keahlian</div>${data.skills.map(s => `<span class="cv-skill-badge">${esc(s.name)}</span>`).join('')}</div>` : ''}
-          ${data.hobbies?.length ? `<div class="cv-section"><div class="cv-section-title">Hobi</div>${data.hobbies.map(h => `<div class="cv-hobby-item">• ${esc(typeof h === 'string' ? h : h.name || '')}</div>`).join('')}</div>` : ''}
+          ${data.skills?.length ? `
+            <div class="cv-section">
+              <div class="cv-section-title">Keahlian</div>
+              ${renderSkillBars(data.skills)}
+            </div>
+          ` : ''}
+          ${sm.facebook || sm.twitter || sm.instagram || sm.github || sm.linkedin ? `
+            <div class="cv-section">
+              <div class="cv-section-title">Sosial Media</div>
+              ${sm.linkedin ? `<div class="cv-social-item">🔗 ${esc(sm.linkedin)}</div>` : ''}
+              ${sm.github ? `<div class="cv-social-item">💻 ${esc(sm.github)}</div>` : ''}
+              ${sm.instagram ? `<div class="cv-social-item">📷 ${esc(sm.instagram)}</div>` : ''}
+              ${sm.twitter ? `<div class="cv-social-item">🐦 ${esc(sm.twitter)}</div>` : ''}
+              ${sm.facebook ? `<div class="cv-social-item">📘 ${esc(sm.facebook)}</div>` : ''}
+            </div>
+          ` : ''}
+          ${data.hobbies?.length ? `
+            <div class="cv-section">
+              <div class="cv-section-title">Hobi</div>
+              ${data.hobbies.map(h => `<div class="cv-hobby-item">• ${esc(typeof h === 'string' ? h : h.name || '')}</div>`).join('')}
+            </div>
+          ` : ''}
         </div>
         <div class="cv-main">
-          <div class="cv-name">${esc(pi.name || 'Nama')}</div>
+          <div class="cv-name">${esc(pi.name || 'Nama Anda')}</div>
           ${data.ai_summary ? `<div class="cv-summary">${esc(data.ai_summary)}</div>` : ''}
-          ${data.education?.length ? `<div class="cv-section"><div class="cv-section-title">Pendidikan</div>${data.education.map(e => `<div class="cv-item"><div class="cv-item-title">${esc(e.institution)}</div><div class="cv-item-subtitle">${esc(e.degree)}</div><div class="cv-item-date">${esc(e.year)}</div></div>`).join('')}</div>` : ''}
-          ${data.experience?.length ? `<div class="cv-section"><div class="cv-section-title">Pengalaman Kerja</div>${data.experience.map(e => `<div class="cv-item"><div class="cv-item-title">${esc(e.company)}</div><div class="cv-item-subtitle">${esc(e.position)}</div><div class="cv-item-date">${esc(e.period)}</div>${e.description ? `<div class="cv-item-desc">${esc(e.description)}</div>` : ''}</div>`).join('')}</div>` : ''}
-          ${data.organizations?.length ? `<div class="cv-section"><div class="cv-section-title">Organisasi</div>${data.organizations.map(o => `<div class="cv-item"><div class="cv-item-title">${esc(o.name)}</div><div class="cv-item-subtitle">${esc(o.position)}</div><div class="cv-item-date">${esc(o.period)}</div></div>`).join('')}</div>` : ''}
+          ${data.education?.length ? `
+            <div class="cv-section">
+              <div class="cv-section-title">Pendidikan</div>
+              ${data.education.map(e => `
+                <div class="cv-item">
+                  <div class="cv-item-title">${esc(e.institution)}</div>
+                  <div class="cv-item-subtitle">${esc(e.degree)}</div>
+                  <div class="cv-item-date">${esc(e.year)}</div>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+          ${data.experience?.length ? `
+            <div class="cv-section">
+              <div class="cv-section-title">Pengalaman Kerja</div>
+              ${data.experience.map(e => `
+                <div class="cv-item">
+                  <div class="cv-item-title">${esc(e.company)}</div>
+                  <div class="cv-item-subtitle">${esc(e.position)}</div>
+                  <div class="cv-item-date">${esc(e.period)}</div>
+                  ${e.description ? `<div class="cv-item-desc">${esc(e.description)}</div>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+          ${data.organizations?.length ? `
+            <div class="cv-section">
+              <div class="cv-section-title">Organisasi</div>
+              ${data.organizations.map(o => `
+                <div class="cv-item">
+                  <div class="cv-item-title">${esc(o.name)}</div>
+                  <div class="cv-item-subtitle">${esc(o.position)}</div>
+                  <div class="cv-item-date">${esc(o.period)}</div>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
         </div>
-      </div>`;
+      </div>
+    `;
   }
 
   if (template === 'classic') {
     return `
       <div class="template-classic">
-        <div class="cv-header-classic">${photoHtml}<div class="cv-name">${esc(pi.name || 'Nama')}</div>
-          <div class="cv-contact-line">${pi.email ? `<span>${esc(pi.email)}</span>` : ''}${pi.phone ? `<span class="sep">|</span><span>${esc(pi.phone)}</span>` : ''}${pi.address ? `<span class="sep">|</span><span>${esc(pi.address)}</span>` : ''}</div>
+        <div class="cv-header-classic">
+          ${photoHtml}
+          <div class="cv-name">${esc(pi.name || 'Nama Anda')}</div>
+          <div class="cv-contact-line">
+            ${pi.email ? `<span>${esc(pi.email)}</span>` : ''}
+            ${pi.email && pi.phone ? '<span class="sep">|</span>' : ''}
+            ${pi.phone ? `<span>${esc(pi.phone)}</span>` : ''}
+            ${pi.phone && pi.address ? '<span class="sep">|</span>' : ''}
+            ${pi.address ? `<span>${esc(pi.address)}</span>` : ''}
+          </div>
+          ${renderMetaHtml(false)}
           ${data.ai_summary ? `<div class="cv-summary">${esc(data.ai_summary)}</div>` : ''}
         </div>
         ${data.education?.length ? `<div class="cv-section"><div class="cv-section-title">Pendidikan</div>${data.education.map(e => `<div class="cv-item"><div class="cv-item-header"><span class="cv-item-title">${esc(e.institution)}</span><span class="cv-item-date">${esc(e.year)}</span></div><div class="cv-item-subtitle">${esc(e.degree)}</div></div>`).join('')}</div>` : ''}
         ${data.experience?.length ? `<div class="cv-section"><div class="cv-section-title">Pengalaman Kerja</div>${data.experience.map(e => `<div class="cv-item"><div class="cv-item-header"><span class="cv-item-title">${esc(e.company)} - ${esc(e.position)}</span><span class="cv-item-date">${esc(e.period)}</span></div>${e.description ? `<div class="cv-item-desc">${esc(e.description)}</div>` : ''}</div>`).join('')}</div>` : ''}
-        ${data.skills?.length ? `<div class="cv-section"><div class="cv-section-title">Keahlian</div><div class="cv-skills-classic">${data.skills.map(s => `<span class="cv-skill-badge">${esc(s.name)}</span>`).join('')}</div></div>` : ''}
-      </div>`;
+        ${data.skills?.length ? `<div class="cv-section"><div class="cv-section-title">Keahlian</div><div class="cv-skills-classic">${renderSkillBars(data.skills)}</div></div>` : ''}
+        ${data.organizations?.length ? `<div class="cv-section"><div class="cv-section-title">Organisasi</div>${data.organizations.map(o => `<div class="cv-item"><div class="cv-item-header"><span class="cv-item-title">${esc(o.name)} - ${esc(o.position)}</span><span class="cv-item-date">${esc(o.period)}</span></div></div>`).join('')}</div>` : ''}
+        ${data.hobbies?.length ? `<div class="cv-section"><div class="cv-section-title">Hobi</div><div class="cv-hobbies-classic">${data.hobbies.join(', ')}</div></div>` : ''}
+      </div>
+    `;
   }
 
   if (template === 'minimal') {
     return `
       <div class="template-minimal">
-        <div class="cv-header-minimal"><div class="cv-name">${esc(pi.name || 'Nama')}</div>
-          <div class="cv-contact-minimal">${pi.email ? `<span>✉ ${esc(pi.email)}</span>` : ''}${pi.phone ? `<span>📞 ${esc(pi.phone)}</span>` : ''}${pi.address ? `<span>📍 ${esc(pi.address)}</span>` : ''}</div>
+        <div class="cv-header-minimal">
+          <div class="cv-name">${esc(pi.name || 'Nama Anda')}</div>
+          <div class="cv-contact-minimal">
+            ${pi.email ? `<span>✉ ${esc(pi.email)}</span>` : ''}
+            ${pi.phone ? `<span>📞 ${esc(pi.phone)}</span>` : ''}
+            ${pi.address ? `<span>📍 ${esc(pi.address)}</span>` : ''}
+          </div>
+          ${renderMetaHtml(false)}
         </div>
         ${data.ai_summary ? `<div class="cv-summary">${esc(data.ai_summary)}</div>` : ''}
         ${data.education?.length ? `<div class="cv-section"><div class="cv-section-title">Pendidikan</div>${data.education.map(e => `<div class="cv-item"><div class="cv-item-title">${esc(e.institution)}</div><div class="cv-item-meta">${esc(e.degree)} • ${esc(e.year)}</div></div>`).join('')}</div>` : ''}
         ${data.experience?.length ? `<div class="cv-section"><div class="cv-section-title">Pengalaman Kerja</div>${data.experience.map(e => `<div class="cv-item"><div class="cv-item-title">${esc(e.company)}</div><div class="cv-item-meta">${esc(e.position)} • ${esc(e.period)}</div>${e.description ? `<div class="cv-item-desc">${esc(e.description)}</div>` : ''}</div>`).join('')}</div>` : ''}
-        ${data.skills?.length ? `<div class="cv-section"><div class="cv-section-title">Keahlian</div><div class="cv-skills-minimal">${data.skills.map(s => `<span class="cv-skill-badge">${esc(s.name)}</span>`).join('')}</div></div>` : ''}
-      </div>`;
+        ${data.skills?.length ? `<div class="cv-section"><div class="cv-section-title">Keahlian</div><div class="cv-skills-minimal">${renderSkillBars(data.skills)}</div></div>` : ''}
+        ${data.organizations?.length ? `<div class="cv-section"><div class="cv-section-title">Organisasi</div>${data.organizations.map(o => `<div class="cv-item"><div class="cv-item-title">${esc(o.name)}</div><div class="cv-item-meta">${esc(o.position)} • ${esc(o.period)}</div></div>`).join('')}</div>` : ''}
+      </div>
+    `;
   }
 
   if (template === 'elegant') {
@@ -124,6 +235,7 @@ function renderPreviewTemplate(data, template) {
               ${pi.phone ? `<span>•</span><span>${esc(pi.phone)}</span>` : ''}
               ${pi.address ? `<span>•</span><span>${esc(pi.address)}</span>` : ''}
             </div>
+            ${renderMetaHtml(false)}
           </div>
           ${data.ai_summary ? `<div class="cv-summary">${esc(data.ai_summary)}</div>` : ''}
           ${data.experience?.length ? `<div class="cv-section"><div class="cv-section-title">Pengalaman Profesional</div>${data.experience.map(e => `<div class="cv-item"><div class="cv-item-header"><span class="cv-item-title">${esc(e.position)}</span><span class="cv-item-date">${esc(e.period)}</span></div><div class="cv-item-subtitle">${esc(e.company)}</div>${e.description ? `<div class="cv-item-desc">${esc(e.description)}</div>` : ''}</div>`).join('')}</div>` : ''}
@@ -131,12 +243,13 @@ function renderPreviewTemplate(data, template) {
         </div>
         <div class="cv-elegant-sidebar">
           ${photoHtml}
-          ${data.skills?.length ? `<div class="cv-section"><div class="cv-section-title">Keahlian</div><div class="cv-skills-list">${data.skills.map(s => `<div class="cv-skill-item">${esc(s.name)}</div>`).join('')}</div></div>` : ''}
+          ${data.skills?.length ? `<div class="cv-section"><div class="cv-section-title">Keahlian</div><div class="cv-skills-list">${renderSkillBars(data.skills)}</div></div>` : ''}
           ${data.organizations?.length ? `<div class="cv-section"><div class="cv-section-title">Organisasi</div>${data.organizations.map(o => `<div class="cv-item"><div class="cv-item-title">${esc(o.position)}</div><div class="cv-item-subtitle">${esc(o.name)}</div><div class="cv-item-date">${esc(o.period)}</div></div>`).join('')}</div>` : ''}
         </div>
       </div>
     `;
   }
+
   if (template === 'professional') {
     const socialLinks = [];
     if (data.social_media) {
@@ -159,18 +272,14 @@ function renderPreviewTemplate(data, template) {
               ${pi.phone ? `<div>📞 ${esc(pi.phone)}</div>` : ''}
               ${pi.email ? `<div>✉ ${esc(pi.email)}</div>` : ''}
               ${pi.address ? `<div>📍 ${esc(pi.address)}</div>` : ''}
+              ${renderMetaHtml(true)}
             </div>
           </div>
           ${data.skills?.length ? `
           <div class="cv-prof-section">
             <div class="cv-prof-title">Skill</div>
             <div class="cv-prof-skills">
-              ${data.skills.map(s => `
-                <div class="cv-prof-skill-item">
-                  <span class="skill-name">${esc(s.name)}</span>
-                  <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
-                </div>
-              `).join('')}
+              ${renderSkillBars(data.skills)}
             </div>
           </div>
           ` : ''}
@@ -240,7 +349,27 @@ function renderPreviewTemplate(data, template) {
       </div>
     `;
   }
+
   if (template === 'aesthetic') {
+    const renderAestheticCircles = (skills) => {
+      if (!skills || !skills.length) return '';
+      return skills.map(s => {
+        let lvl = parseInt(s.level);
+        if (isNaN(lvl)) lvl = 8;
+        if (lvl < 1) lvl = 1;
+        if (lvl > 10) lvl = 10;
+        const deg = lvl * 10 * 3.6; // convert to degrees
+        return `
+          <div class="aes-skill-circle-item">
+            <div class="aes-donut" style="background: conic-gradient(#b87a7a ${deg}deg, #e8d0d0 0)">
+              <div class="aes-donut-inner"></div>
+            </div>
+            <div class="aes-skill-name">${esc(s.name)}</div>
+          </div>
+        `;
+      }).join('');
+    };
+
     return `
       <div class="template-aesthetic">
         <div class="aes-header">
@@ -263,6 +392,7 @@ function renderPreviewTemplate(data, template) {
                 ${pi.phone ? `<div>📞 ${esc(pi.phone)}</div>` : ''}
                 ${pi.email ? `<div>✉ ${esc(pi.email)}</div>` : ''}
                 ${pi.address ? `<div>📍 ${esc(pi.address)}</div>` : ''}
+                ${renderMetaHtml(false)}
               </div>
             </div>
             
@@ -279,14 +409,7 @@ function renderPreviewTemplate(data, template) {
             <div class="aes-section">
               <div class="aes-pill-title">SKILLS</div>
               <div class="aes-skills-grid">
-                ${data.skills.map(s => `
-                  <div class="aes-skill-circle-item">
-                    <div class="aes-donut">
-                      <div class="aes-donut-inner"></div>
-                    </div>
-                    <div class="aes-skill-name">${esc(s.name)}</div>
-                  </div>
-                `).join('')}
+                ${renderAestheticCircles(data.skills)}
               </div>
             </div>
             ` : ''}
@@ -347,6 +470,7 @@ function renderPreviewTemplate(data, template) {
               ${pi.phone ? `<span>📞 ${esc(pi.phone)}</span>` : ''}
               ${pi.address ? `<span>📍 ${esc(pi.address)}</span>` : ''}
             </div>
+            ${renderMetaHtml(true)}
           </div>
         </div>
       </div>
@@ -358,7 +482,7 @@ function renderPreviewTemplate(data, template) {
           </div>
           <div class="cv-creative-col">
             ${data.education?.length ? `<div class="cv-section"><div class="cv-section-title"><span class="icon">🎓</span> Pendidikan</div>${data.education.map(e => `<div class="cv-item"><div class="cv-item-header"><div class="cv-item-title">${esc(e.institution)}</div><div class="cv-item-date">${esc(e.year)}</div></div><div class="cv-item-subtitle">${esc(e.degree)}</div></div>`).join('')}</div>` : ''}
-            ${data.skills?.length ? `<div class="cv-section"><div class="cv-section-title"><span class="icon">⚡</span> Keahlian</div><div class="cv-skills-tags">${data.skills.map(s => `<span class="cv-tag">${esc(s.name)}</span>`).join('')}</div></div>` : ''}
+            ${data.skills?.length ? `<div class="cv-section"><div class="cv-section-title"><span class="icon">⚡</span> Keahlian</div><div class="cv-skills-bar-container" style="padding-top:10px">${renderSkillBars(data.skills)}</div></div>` : ''}
           </div>
         </div>
       </div>

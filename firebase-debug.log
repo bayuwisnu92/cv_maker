@@ -1,0 +1,27 @@
+[debug] [2026-06-22T23:14:34.977Z] ----------------------------------------------------------------------
+[debug] [2026-06-22T23:14:35.020Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\LENOVO\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2026-06-22T23:14:35.022Z] CLI Version:   15.19.1
+[debug] [2026-06-22T23:14:35.022Z] Platform:      win32
+[debug] [2026-06-22T23:14:35.023Z] Node Version:  v20.13.1
+[debug] [2026-06-22T23:14:35.023Z] Time:          Tue Jun 23 2026 06:14:35 GMT+0700 (Waktu Indonesia Barat)
+[debug] [2026-06-22T23:14:35.024Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-06-22T23:14:35.033Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2026-06-22T23:14:51.675Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-06-22T23:14:51.677Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2026-06-22T23:14:55.588Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\LENOVO\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:310:49)
+    at listOnTimeout (node:internal/timers:573:17)
+    at process.processTimers (node:internal/timers:514:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2026-06-22T23:18:38.291Z] ----------------------------------------------------------------------
+[debug] [2026-06-22T23:18:38.298Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\LENOVO\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --debug
+[debug] [2026-06-22T23:18:38.299Z] CLI Version:   15.19.1
+[debug] [2026-06-22T23:18:38.299Z] Platform:      win32
+[debug] [2026-06-22T23:18:38.299Z] Node Version:  v20.13.1
+[debug] [2026-06-22T23:18:38.299Z] Time:          Tue Jun 23 2026 06:18:38 GMT+0700 (Waktu Indonesia Barat)
+[debug] [2026-06-22T23:18:38.300Z] ----------------------------------------------------------------------
+[debug] 
+[error] 
+[error] Error: Not in a Firebase app directory (could not locate firebase.json)
